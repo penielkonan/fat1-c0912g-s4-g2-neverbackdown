@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>TYRES &amp; WHEELS</title>
+        <link type="text/css" rel="stylesheet" href="../resources/css/userStyle.css" />
+    </h:head>
+    <h:body id="index">
+        <p id="back-top" style="display: none;">
+            <a href="#top">
+                <span></span>
+            </a>
+        </p>
+        <div id="wrapper1">
+            <div id="wrapper2">
+                <div id="wrapper3">
+                    <div id="header">
+                        <a id="header_logo" title="TYRES &amp; WHEELS" href="index.xhtml">
+                            <img class="logo" alt="TYRES &amp; WHEELS" src="../img/logo.png"/>
+                        </a>
+                        <div id="header_right">
+                            <div id="languages_block_top">
+                                <ul id="first-languages">
+                                    <li class="selected_language"> en </li>
+                                    <li>
+                                        <a title="VietNam (VN)" href="#"> vn </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearblock"></div>
+                            <ul id="tmheaderlinks">
+                                <li>
+                                    <a class="active" href="#">home</a>
+                                </li>
+                                <li>
+                                    <a href="#">specials</a>
+                                </li>
+                            </ul>
+                            <div class="clearblock"></div>
+                            <div id="currencies_block_top">
+                                <form>
+                                    <label style="cursor: pointer;">Currency:</label>
+                                    <div class="jqTransformSelectWrapper" style="z-index: 10; width: 80px;">
+                                        <div>
+                                            <span style="width: 63px;">Dollar</span>
+                                            <a class="jqTransformSelectOpen" href="#"></a>
+                                        </div>
+                                        <ul style="width: 78px; display: none; visibility: visible; height: 72px; overflow: hidden;">
+                                            <li>
+                                                <a class="selected" index="0" href="#">Dollar</a>
+                                            </li>
+                                            <li>
+                                                <a index="1" href="#">Euro</a>
+                                            </li>
+                                        </ul>
+                                        <select class="jqTransformHidden" onchange="setCurrency(this.value);" style="">
+                                            <option selected="selected" value="2">Dollar</option>
+                                            <option value="1">Euro</option>
+                                        </select>
+                                    </div>
+                                    <input id="id_currency" type="hidden" value="" name="id_currency"/>
+                                    <input type="hidden" value="" name="SubmitCurrency"/>
+                                </form>
+                            </div>
+                            <ul id="header_user">
+                                <li id="header_user_info">
+                                    Welcome, (&nbsp;
+                                    <a href="#">Log in</a>
+                                    &nbsp;)
+                                </li>
+                                <li id="your_account">
+                                    <a title="Your Account" href="#">Your Account</a>
+                                </li>
+                            </ul>
+                            <div id="shopping_cart">
+                                <a title="Your Shopping Cart" href="#">Cart:</a>
+                                <span class="ajax_cart_quantity hidden" style="display: none;">0</span>
+                                <span class="ajax_cart_product_txt hidden" style="display: none;">product</span>
+                                <span class="ajax_cart_product_txt_s hidden" style="display: none;">products</span>
+                                <span class="ajax_cart_no_product">(empty)</span>
+                            </div>
+                            <div class="clearblock"></div>
+                            <div id="search_block_top">
+                                <form id="searchbox" action="#" method="get">
+                                    <label>Search</label>
+                                    <input id="search_query_top" class="search_query ac_input" type="text" value="" name="search_query" autocomplete="off"/>
+                                    <a href="javascript:document.getElementById('searchbox').submit();">Search</a>
+                                    <input type="hidden" value="position" name="orderby"/>
+                                    <input type="hidden" value="desc" name="orderway"/>
+                                </form>
+                            </div>
+                            <div class="clearblock"></div>
+                            <div id="tmcategories">
+                                <ul id="cat" class="sf-menu sf-js-enabled">
+                                    <li class="">
+                                        <a href="#">CAR TYRES</a>
+                                    </li>
+                                    <li class="sub">
+                                        <a href="#">TRUCK TYRES</a>
+                                        <ul class="subcat" style="visibility: hidden; display: none;">
+                                            <li class="">
+                                                <a href="#">Ed do eiusmod</a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#">Ed do eiusmod</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="columns">
+                        <!--===========================-->
+                        <!--===========================-->
+                        <!--===========================-->
+                        <ui:insert name="content"/>
+                        <!--===========================-->
+                        <!--===========================-->
+                        <!--===========================-->
+                    </div>
+                    <div id="footer">
+                        <div id="tmfooterlinks">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p>
+                                &copy; 2012 Powered by
+                                <a href="http://www.prestashop.com">PrestaShop</a>
+                                &trade;. All rights reserved
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
