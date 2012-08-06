@@ -778,10 +778,6 @@ table#cart_summary td.price, #center_column span.price {
     width: 306px;
 }
 
-#center_column .bordercolor, #center_column table.std th, #center_column table.std td, #center_column form.std h3 {
-    border-color: #555555 !important;
-}
-
 #primary_block #image-block {
     border-style: solid;
     border-width: 1px;
@@ -891,7 +887,7 @@ table#cart_summary td.price, #center_column span.price {
     text-transform: none;
 }
 
-#buy_block {
+.buy_block {
     border-style: solid;
     border-width: 1px 0 0;
     margin: 20px 0 0;
@@ -903,15 +899,20 @@ table#cart_summary td.price, #center_column span.price {
     padding: 17px 0 0;
 }
 
-#buy_block div.price {
+.buy_block div.price {
     overflow: hidden;
     padding: 20px 0;
 }
 
-#buy_block span.our_price_display {
+.buy_block span.our_price_display {
     display: block;
     float: left;
     height: 27px;
+}
+
+.buy_block .other_options {
+    border-style: solid;
+    border-width: 1px 0 0;
 }
 
 table#cart_summary td.price, #center_column span.price {
@@ -920,19 +921,19 @@ table#cart_summary td.price, #center_column span.price {
     text-align: left;
 }
 
-#buy_block span#our_price_display {
+.buy_block span#our_price_display {
     display: block;
     float: left;
     font: 15px "Arial";
     padding: 12px 0 0;
 }
 
-#buy_block span.our_price_display_tax {
+.buy_block span.our_price_display_tax {
     display: block;
     float: left;
 }
 
-#buy_block #add_to_cart {
+.buy_block #add_to_cart {
     float: right;
     margin: 0;
     padding: 0;
@@ -956,7 +957,7 @@ a.button_mini, a.button_small, a.button, a.button_large, a.exclusive_mini, a.exc
     line-height: 39px !important;
 }
 
-#buy_block #quantity_wanted_p {
+.buy_block #quantity_wanted_p {
     float: right;
     padding: 0 10px 0 0;
 }
@@ -968,7 +969,7 @@ input[type="text"], input[type="password"], textarea, select {
     font: 12px "Arial";
 }
 
-#buy_block #quantity_wanted_p #quantity_wanted {
+.buy_block #quantity_wanted_p #quantity_wanted , .text {
     float: right;
     height: 15px;
     margin: 6px 0 0;
@@ -982,7 +983,7 @@ label {
     font: 12px "Arial";
 }
 
-#buy_block #quantity_wanted_p label {
+.buy_block #quantity_wanted_p label {
     float: right;
     padding: 12px 7px 0 0;
     text-align: right;
@@ -1001,37 +1002,38 @@ label {
     width: 1044px;
 }
 
-#buy_block .other_options {
+.buy_block .other_options {
     border-style: solid;
     border-width: 1px 0 0;
 }
 
-#buy_block #other_prices {
+.buy_block #other_prices {
     float: left;
     padding: 10px 0 0;
     width: 50%;
 }
 
-#buy_block #other_prices, #buy_block #other_prices p, #buy_block #other_prices span {
+.buy_block #other_prices, .buy_block #other_prices p, .buy_block #other_prices span {
     font: 12px "Arial";
 }
 
-#buy_block #other_prices > p {
+.buy_block #other_prices > p {
     margin: 0;
     min-height: 18px;
     padding: 13px 0 0;
     width: 100%;
 }
 
-#buy_block #pQuantityAvailable span {
+.buy_block #pQuantityAvailable span {
     color: #FFFFFF;
     font-weight: bold;
 }
 
-#buy_block #attributes {
+.buy_block #attributes {
     float: right;
     padding: 10px 0 0;
     width: 50%;
+    visibility: hidden;
 }
 
 span.on_sale, span.discount {
@@ -1040,7 +1042,7 @@ span.on_sale, span.discount {
     text-transform: uppercase;
 }
 
-#buy_block span.on_sale, #buy_block span.discount {
+.buy_block span.on_sale, .buy_block span.discount {
     background: none repeat scroll 0 0 #FFFFFF;
     color: #E70B09;
     display: block;
@@ -1050,20 +1052,20 @@ span.on_sale, span.discount {
     padding: 3px 7px 0;
 }
 
-#buy_block #attributes p {
+.buy_block #attributes p {
     margin: 0;
     overflow: hidden;
     padding: 10px 0 0;
 }
 
-#buy_block #attributes select {
+.buy_block #attributes select {
     float: right;
     height: 21px;
     padding: 1px;
     width: 120px;
 }
 
-#buy_block #attributes label {
+.buy_block #attributes label {
     float: right;
     padding: 3px 7px 0 0;
     text-align: right;
@@ -1123,6 +1125,20 @@ ul.idTabs li a.selected {
     height: 22px;
 }
 
+.selected {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #333333;
+    border-color: #555555;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    color: #FFFFFF;
+    height: 22px;
+}
+
 ul.idTabs li + li {
     margin: 0 0 0 1px;
 }
@@ -1133,10 +1149,6 @@ div#more_info_sheets {
     margin-top: 1px;
     position: relative;
     z-index: 9;
-}
-
-#center_column .bordercolor, #center_column table.std th, #center_column table.std td, #center_column form.std h3 {
-    border-color: #555555 !important;
 }
 
 #center_column .bgcolor, #center_column table.std th {
@@ -1175,30 +1187,30 @@ div#more_info_sheets {
     display: none;
 }
 
-#idTab5 {
+#idTab3 {
     padding: 0 20px 20px;
 }
 
-#idTab5 p.comment_add {
+#idTab3 p.comment_add {
     margin: 0;
     padding: 20px 0 0;
 }
 
-#idTab5 fieldset p {
+#idTab3 fieldset p {
     margin: 0;
     padding: 10px 0 0;
 }
 
-#idTab5 p.align_right {
+#idTab3 p.align_right {
     height: 11px;
     padding: 0;
 }
 
-#idTab5 fieldset table.comment_rating {
+#idTab3 fieldset table.comment_rating {
     margin: 17px 0 3px;
 }
 
-#idTab5 p.align_right a {
+#idTab3 p.align_right a {
     background: url("../../img/icon/delete.gif") no-repeat scroll 0 0 transparent;
     display: block;
     float: right;
@@ -1213,12 +1225,12 @@ label {
     font: 12px "Arial";
 }
 
-#idTab5 fieldset label {
+#idTab3 fieldset label {
     display: block;
     padding: 0 0 3px;
 }
 
-#idTab5 fieldset input#customer_name, #idTab5 fieldset input#comment_title {
+#idTab3 fieldset input#customer_name, #idTab3 fieldset input#comment_title {
     height: 15px;
     padding: 3px;
     width: 206px;
@@ -1232,14 +1244,14 @@ textarea {
     width: 755px;
 }
 
-#idTab5 textarea#content {
+#idTab3 textarea#content {
     height: 100px;
     max-width: 713px;
     min-width: 300px;
     width: 713px;
 }
 
-#idTab5 p.submit {
+#idTab3 p.submit {
     padding: 13px 0 0;
 }
 
@@ -1319,4 +1331,58 @@ div.column div.block .block_content {
 
 div.column a:hover{
     color: #e70b0b;
+}
+
+input.button_mini, input.button_small, input.button, input.button_large, input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled {
+    padding-bottom: 2px;
+}
+
+#cart_block dl {
+    padding: 10px 0 17px;
+}
+
+#cart_block dl dt {
+    clear: both;
+    height: 15px;
+    padding: 7px 0 0;
+}
+
+#cart_block span.quantity-formated {
+    float: left;
+    font: 10px/17px "Arial";
+    letter-spacing: 1px;
+    padding: 0 2px 0 0;
+}
+
+#cart_block span.quantity-formated span.quantity {
+    font-size: 10px;
+}
+
+div.column a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#cart_block dl a {
+    text-decoration: underline;
+}
+
+#cart_block dl dt a {
+    float: left;
+}
+
+#cart_block a.ajax_cart_block_remove_link {
+    background: url("../../img/icon/delete.gif") no-repeat scroll 0 bottom transparent;
+    display: block;
+    float: right;
+    font-size: 0;
+    height: 13px;
+    margin: 0 0 0 5px;
+    width: 11px;
+}
+
+#cart_block dl dt span.price {
+    color: #FFFFFF;
+    float: right;
+    font-weight: bold;
 }

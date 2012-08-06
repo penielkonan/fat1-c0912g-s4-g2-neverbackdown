@@ -1,32 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets">
-    <div id="right_column" class="column">
-        <div id="cart_block" class="block exclusive">
-            <h4>
-                <a href="#">Cart</a>
-            </h4>
-            <div class="block_content">
-                <div id="cart_block_list" class="expanded">
-                    <p id="cart_block_no_products">No products</p>
-                    <div class="cart-prices">
-                        <div class="cart-prices-block">
-                            <span>Shipping</span>
-                            <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">$0.00</span>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <c:if test="#{cartBean.listCart.size() == 0}">
+        <div id="right_column" class="column">
+            <div id="cart_block" class="block exclusive">
+                <h4>
+                    <a href="#">Cart</a>
+                </h4>
+                <div class="block_content">
+                    <div id="cart_block_list" class="expanded">
+                        <p id="cart_block_no_products">No products</p>
+                        <div class="cart-prices">
+                            <div class="cart-prices-block">
+                                <span>Shipping</span>
+                                <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">$0.00</span>
+                            </div>
+                            <div class="cart-prices-block">
+                                <span>Total</span>
+                                <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
+                            </div>
+                            <p id="cart-price-precisions"> Prices are tax excluded </p>
+                            <p id="cart-buttons">
+                                <a class="button_mini" title="Cart" href="#">Cart</a>
+                                <a id="button_order_cart" class="button_small" title="Check out" href="#">Check out</a>
+                            </p>
                         </div>
-                        <div class="cart-prices-block">
-                            <span>Total</span>
-                            <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
-                        </div>
-                        <p id="cart-price-precisions"> Prices are tax excluded </p>
-                        <p id="cart-buttons">
-                            <a class="button_mini" title="Cart" href="#">Cart</a>
-                            <a id="button_order_cart" class="button_small" title="Check out" href="#">Check out</a>
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </c:if>
+    <c:if test="#{cartBean.listCart.size() != 0}">
+        <div id="right_column" class="column">
+            <div id="cart_block" class="block exclusive">
+                <h4>
+                    <a href="#">Cart</a>
+                </h4>
+                <div class="block_content">
+                    <div id="cart_block_list" class="expanded">
+                        <dl class="products">
+                            <ui:repeat value="#{cartBean.listCart}" var="lstCart">
+                                <h:form>
+                                    <dt id="cart_block_product_3_13" class="first_item">
+                                        <span class="quantity-formated">
+                                            <span class="quantity">#{lstCart.amountProduct}</span>x                                            
+                                        </span>
+                                        <h:commandLink value="#{lstCart.nameProduct}" title="#{lstCart.nameProduct}" action="#{productBean.product(lstCart.idProduct)}"></h:commandLink>
+                                        <span class="remove_link">                                            
+                                            <h:commandLink styleClass="ajax_cart_block_remove_link" action="#{productBean.product(lstCart.idProduct)}" rel="nofollow"/>
+                                        </span>
+                                        <span class="price">#{lstCart.totalProduct()}</span>
+                                    </dt>
+                                </h:form>
+                            </ui:repeat>
+                        </dl>
+                        <div class="cart-prices">
+                            <div class="cart-prices-block">
+                                <span>Shipping</span>
+                                <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">$0.00</span>
+                            </div>
+                            <div class="cart-prices-block">
+                                <span>Total</span>
+                                <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
+                            </div>
+                            <p id="cart-price-precisions"> Prices are tax excluded </p>
+                            <p id="cart-buttons">
+                                <a class="button_mini" title="Cart" href="#">Cart</a>
+                                <a id="button_order_cart" class="button_small" title="Check out" href="#">Check out</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
     <div class="clearblock"></div>
 </ui:composition>
