@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <body>
 
@@ -22,17 +23,13 @@
                             </div>
                             <div id="primary_block" class="clearfix">
                                 <div id="pb-right-column">
-                                    <div id="image-block" class="bordercolor">
-                                        <!--                                        <img id="bigpic" class="jqzoom" width="304" height="304" alt="" src="../img/p/2-4-large.jpg"/>-->
+                                    <div id="image-block" class="bordercolor">                                        
                                         <img id="bigpic" class="jqzoom" width="304" height="304" alt="#{lstDetail.productName}" src="../img/p/#{lstDetail.figure}"/>
                                     </div>
                                     <div id="views_block">
                                         <div id="thumbs_list">
                                             <ul id="thumbs_list_frame" style="width: 266px;">
                                                 <li id="thumbnail_34" class="" style="display: list-item;">
-                                                    <!--                                                    <a class="thickbox bordercolor" title="Fondmetal 5700" rel="other-views" href="../img/p/2-34-thickbox.jpg">
-                                                                                                            <img id="thumb_35" width="80" height="80" alt="Fondmetal 5700" src="../img/p/2-4-medium.jpg"/>
-                                                                                                        </a>-->
                                                     <a class="thickbox bordercolor" title="${lstDetail.productName}" rel="other-views" href="../img/p/#{lstDetail.figure}">
                                                         <img id="#{lstDetail.productID}" width="80" height="80" alt="#{lstDetail.productName}" src="../img/p/#{lstDetail.figure}"/>
                                                     </a>
@@ -51,23 +48,19 @@
                                 </div>
                                 <div id="pb-left-column">
                                     <h1>#{lstDetail.productName}</h1>
-                                    <form id="buy_block" class="bordercolor" method="post" action="#">
-                                        <div class="price bordercolor">
-                                            <h:form>
-                                                <span class="our_price_display">
-                                                    <span id="our_price_display" class="price">$#{lstDetail.unitPrice}</span>
-                                                    <span class="our_price_display_tax">tax excl.</span>
-                                                </span>
-                                                <p id="add_to_cart">
-                                                    <!--                                                <a class="exclusive" href="javascript:document.getElementById('add2cartbtn').click();">Add to cart</a>-->
-                                                    <h:commandLink styleClass="exclusive" action="#{cartBean.addToCart(lstP.productID,lstP.productName,lstP.figure,lstP.unitPrice)}" >Add to cart</h:commandLink>
-                                                </p>
-                                                <p id="quantity_wanted_p">
-                                                    <h:inputText id="quantity_wanted" styleClass="text" maxlength="3" size="2" value="#{cartBean.amount}"/>
-                                                    <!--                                                <input id="quantity_wanted" class="text" type="text" maxlength="3" size="2" value="1" name="qty"/>-->
-                                                    <label>Quantity:</label>
-                                                </p>
-                                            </h:form>
+                                    <h:form id="buy_block" styleClass="buy_block bordercolor">
+                                        <div class="price bordercolor">                                            
+                                            <span class="our_price_display">
+                                                <span id="our_price_display" class="price">$#{lstDetail.unitPrice}</span>
+                                                <span class="our_price_display_tax">tax excl.</span>
+                                            </span>
+                                            <p id="add_to_cart">                                                
+                                                <h:commandLink styleClass="exclusive" action="#{cartBean.addToCart(lstDetail.productID,lstDetail.productName,lstDetail.figure,lstDetail.unitPrice)}" >Add to cart</h:commandLink>
+                                            </p>
+                                            <p id="quantity_wanted_p">
+                                                <h:inputText id="quantity_wanted" styleClass="text" maxlength="3" size="2" value="#{cartBean.amount}"/>                                                
+                                                <label>Quantity:</label>
+                                            </p>
                                         </div>
                                         <div class="other_options bordercolor">
                                             <div id="other_prices">
@@ -77,25 +70,25 @@
                                                     <span id="quantityAvailableTxtMultiple">items in stock</span>
                                                 </p>
                                             </div>
-                                            <!--                                            <div id="attributes">
-                                                                                            <span class="on_sale">On sale!</span>
-                                                                                            <div class="clearblock"></div>
-                                                                                            <p>
-                                                                                                <select id="group_1" onchange="javascript:findCombination();$('#wrapResetImages').show('slow');;" name="group_1">
-                                                                                                    <option title="Black" value="1">Black</option>
-                                                                                                    <option title="Green" value="5">Green</option>
-                                                                                                    <option title="Red" value="4">Red</option>
-                                                                                                </select>
-                                                                                                <label for="group_1">Color:</label>
-                                                                                            </p>
-                                                                                            <p>
-                                                                                                <select id="group_2" onchange="javascript:findCombination();$('#wrapResetImages').show('slow');;" name="group_2">
-                                                                                                    <option title="Metal" value="3">Metal</option>
-                                                                                                    <option title="Plastic" value="2">Plastic</option>
-                                                                                                </select>
-                                                                                                <label for="group_2">Material:</label>
-                                                                                            </p>
-                                                                                        </div>-->
+                                            <div id="attributes">
+                                                <span class="on_sale">On sale!</span>
+                                                <div class="clearblock"></div>
+                                                <p>
+                                                    <select id="group_1" onchange="javascript:findCombination();$('#wrapResetImages').show('slow');;" name="group_1">
+                                                        <option title="Black" value="1">Black</option>
+                                                        <option title="Green" value="5">Green</option>
+                                                        <option title="Red" value="4">Red</option>
+                                                    </select>
+                                                    <label for="group_1">Color:</label>
+                                                </p>
+                                                <p>
+                                                    <select id="group_2" onchange="javascript:findCombination();$('#wrapResetImages').show('slow');;" name="group_2">
+                                                        <option title="Metal" value="3">Metal</option>
+                                                        <option title="Plastic" value="2">Plastic</option>
+                                                    </select>
+                                                    <label for="group_2">Material:</label>
+                                                </p>
+                                            </div>
                                             <div class="clearblock"></div>
                                         </div>
                                         <div id="short_description_block" class="bordercolor">
@@ -108,31 +101,27 @@
                                             </p>
                                         </div>
                                         <div class="clearblock"></div>
-                                    </form>
+                                    </h:form>                                    
                                 </div>
                             </div>
                             <div id="more_info_block" class="clear">
                                 <ul id="more_info_tabs" class="idTabs idTabsShort">
                                     <li>
-                                        <a id="more_info_tab_more_info" class="selected" href="#idTab1">More info</a>
+                                        <a id="more_info_tab_more_info" class="selected cl" title="#idTab1">More info</a>
                                     </li>
                                     <li>
-                                        <a id="more_info_tab_data_sheet" href="#idTab2">Data sheet</a>
+                                        <a id="more_info_tab_data_sheet" class="cl" title="#idTab2">Data sheet</a>
                                     </li>
                                     <li>
-                                        <a class="idTabHrefShort" href="#idTab5">Comments (0)</a>
+                                        <a class="idTabHrefShort cl" title="#idTab3">Comments (0)</a>
                                     </li>
                                 </ul>
-                                <div id="more_info_sheets" class="bgcolor bordercolor">
-                                    <!--                                <div id="idTab1" class="block_hidden_only_for_screen">-->
-                                    <div id="idTab1" class="">
-                                        <div>
-                                            <!--                                            <p>Without a doubt we are the leading company in this sphere. Our company is the pioneer of this business because we provide a great number of new technologies concerning design solutions and some technological specialties. We guarantee the premium quality and fair prices of our goods. Besides don't forget that our 24/7 support system will help you solve your problems anytime.</p>
-                                                                                        <p>Our company is the pioneer of this business because we provide a great number of new technologies concerning design solutions and some technological specialties. We guarantee the premium quality and fair prices of our goods. The interesting design is very important thing in our sphere and we are trying to stay in touch with the latest fashion trends.</p>-->
+                                <div id="more_info_sheets" class="bgcolor bordercolor">                                    
+                                    <div id="idTab1" class="bullet">
+                                        <div>                                          
                                             #{lstDetail.productMoreInfo}
                                         </div>
-                                    </div>
-                                    <!--                                <ul id="idTab2" class="bullet">-->
+                                    </div>                                    
                                     <ul id="idTab2" class="bullet block_hidden_only_for_screen">
                                         <li>
                                             <span>Width</span>
@@ -155,8 +144,7 @@
                                             #{lstDetail.sizes}
                                         </li>
                                     </ul>
-                                    <div id="idTab5" class="block_hidden_only_for_screen">
-                                        <!--                                <div id="idTab5">-->
+                                    <div id="idTab3" class="bullet block_hidden_only_for_screen">
                                         <p class="comment_none">No customer comments for the moment.</p>
                                         <p class="comment_add">
                                             <input id="addCommentButton" class="button_large" type="button" onclick="$('#sendComment').slideDown('slow');$(this).slideUp('slow');" value="Add a comment"/>
@@ -194,7 +182,16 @@
                         <ui:include src="cartAjax.xhtml" />
                     </ui:insert>
                 </div>
+                <script type="text/javascript">
+                   $('li a.cl').click(function(){
+                       $('li a.cl').removeClass('selected');
+                       $(this).addClass('selected');
+                       $('.bullet').addClass('block_hidden_only_for_screen');
+                       var link = $(this).attr('title');                       
+                       $(link).removeClass('block_hidden_only_for_screen');                       
+                   });
+                </script>
             </ui:define>
-        </ui:composition>
+        </ui:composition>        
     </body>
 </html>
