@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <body>        
+        <ui:composition template="./../template/Template.xhtml"
+                        xmlns="http://www.w3.org/1999/xhtml"
+                        xmlns:f="http://java.sun.com/jsf/core"
+                        xmlns:h="http://java.sun.com/jsf/html"
+                        xmlns:ui="http://java.sun.com/jsf/facelets">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <span class="navigation_page">
+                                    #{productBean.cateName}
+                                </span>
+                            </div>
+                        </div>
+                        <h1>
+                            #{productBean.cateName}
+                            <span class="category-product-count">	There are #{productBean.countByCategory} products.</span>
+                        </h1>
+                        <p class="cat_desc bordercolor bgcolor">#{productBean.detailCate}</p>
+                        <div class="product_sort">
+                            <form id="productsSortForm" action="#">
+                                <label for="selectPrductSort">Sort by</label>
+                                <select id="selectPrductSort">
+                                    <option selected="selected" value="position:asc">--</option>
+                                    <option value="price:asc">Price: lowest first</option>
+                                    <option value="price:desc">Price: highest first</option>
+                                    <option value="name:asc">Product Name: A to Z</option>
+                                    <option value="name:desc">Product Name: Z to A</option>
+                                    <option value="quantity:desc">In-stock first</option>
+                                </select>
+                            </form>
+                            <ul class="product_view">
+                                <li id="product_view_grid" class="current"></li>
+                                <li id="product_view_list"></li>
+                            </ul>
+                        </div>
+                        <ul id="product_list" class="bordercolor list">
+                            <h:form>
+                                <ui:repeat value="#{productBean.productByCateId}" var="lstCate">
+                                    <li class="ajax_block_product bordercolor">
+                                        <h:commandLink styleClass="product_img_link" title="#{lstCate.productName}" action="#{productBean.product(lstCate.productID)}">
+                                            <img alt="#{lstCate.productName}" src="../../img/p/#{lstCate.figure}"/>
+                                        </h:commandLink>
+                                        <div class="center_block">
+                                            <div class="product_flags">
+                                                <span class="new">New!</span>
+                                                <span class="availability bordercolor">Available</span>
+                                                <span class="online_only bordercolor">Online only!</span>
+                                            </div>
+                                            <h3>
+                                                <h:commandLink styleClass="product_link" title="#{lstCate.productName}" action="#{productBean.product(lstCate.productID)}">#{lstCate.productName}</h:commandLink>
+                                            </h3>
+                                            <p class="product_desc">
+                                                <h:commandLink styleClass="product_descr" action="#{productBean.product(lstCate.productID)}">#{lstCate.toDetailsCut()}</h:commandLink>
+                                            </p>
+                                        </div>
+                                        <div class="right_block bordercolor">
+                                            <span class="on_sale">On sale!</span>
+                                            <span class="price">$#{lstCate.amount()}</span>
+                                            <p class="compare checkbox">
+                                                <input id="comparator_item_list1" class="comparator" type="checkbox" value="comparator_item_1"/>
+                                                <label for="comparator_item_list1">Select to compare</label>
+                                            </p>
+                                            <h:commandLink styleClass="exclusive ajax_add_to_cart_button" title="Add to cart" action="#{cartBean.addToCart(lstCate.productID,lstCate.productName,lstCate.figure,lstCate.unitPrice)}">Add to cart</h:commandLink>
+                                            <br/>
+                                            <h:commandLink styleClass="button" title="View" action="#{productBean.product(lstCate.productID)}">View</h:commandLink>
+                                        </div>
+                                    </li>
+                                </ui:repeat>
+                            </h:form>
+                        </ul>
+                    </div>
+                    <ui:insert>
+                        <ui:include src="cartAjax.xhtml" />
+                    </ui:insert>
+                </div>
+            </ui:define>
+        </ui:composition>        
+    </body>
+</html>

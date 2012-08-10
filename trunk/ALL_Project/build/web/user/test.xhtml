@@ -12,12 +12,20 @@ and open the template in the editor.
         <title>TODO supply a title</title>
     </head>
     <body>
-        <p>
-            <h:form>
-                <ui:repeat value="#{productBean.productDetail}" var="lstP">
-                    ${lstP.productName}
-                </ui:repeat>
-            </h:form>
-        </p>
+            <ui:repeat value="#{cartBean.listCart}" var="lstCart">
+                                <h:form>
+                                    <dt id="cart_block_product_3_13" class="first_item">
+                                        <span class="quantity-formated">
+                                            <span class="quantity" style="opacity: 1;">#{lstCart.amountProduct}</span>x
+                                            <h:commandLink title="#{lstCart.nameProduct}" action="#{productBean.product(lstCart.idProduct)}">#{lstCart.nameProduct}</h:commandLink>
+                                        </span>
+                                        <span class="remove_link">
+                                            <a class="ajax_cart_block_remove_link" href="#" rel="nofollow"> </a>
+                                            <h:commandLink styleClass="ajax_cart_block_remove_link" action="#{productBean.product(lstCart.idProduct)}" rel="nofollow"/>
+                                        </span>
+                                        <span class="price">#{lstCart.totalProduct()}</span>
+                                    </dt>
+                                </h:form>
+                            </ui:repeat>
     </body>
 </html>

@@ -259,4 +259,12 @@ public class ProductDetails implements Serializable {
         return "model.entity.ProductDetails[productID=" + productID + "]";
     }
 
+    public String toDetailsCut(){
+        String productDetailCut = "" + productDetail;
+        return productDetail.substring(0, 200) + "...";
+    }
+
+    public double amount(){
+        return unitPrice.doubleValue();
+    }
 }

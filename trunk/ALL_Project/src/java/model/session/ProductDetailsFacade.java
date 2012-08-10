@@ -37,4 +37,14 @@ public class ProductDetailsFacade extends AbstractFacade<ProductDetails> {
         String eql = "SELECT p FROM ProductDetails p WHERE p.productID = :productID and p.status = 1";
         return (ProductDetails) em.createQuery(eql).setParameter("productID", id).getSingleResult();
     }
+
+    public List<ProductDetails> cateProduct(int cateID){
+        String eql = "SELECT p FROM ProductDetails p WHERE p.productCategorys.productCategoryID = :cateId and p.status = 1";
+        return em.createQuery(eql).setParameter("cateId", cateID).getResultList();
+    }
+
+     public Long CountProductById(int cateID){
+        String eql = "SELECT COUNT (p) FROM ProductDetails p WHERE p.productCategorys.productCategoryID = :cateId and p.status = 1";
+        return (Long) em.createQuery(eql).setParameter("cateId", cateID).getSingleResult();
+    }
 }
