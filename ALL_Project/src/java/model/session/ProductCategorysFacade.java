@@ -27,4 +27,8 @@ public class ProductCategorysFacade extends AbstractFacade<ProductCategorys> {
         super(ProductCategorys.class);
     }
 
+    public ProductCategorys detailCate(int cateID){
+        return (ProductCategorys) em.createNamedQuery("ProductCategorys.findByProductCategoryID").setParameter("productCategoryID", cateID).getSingleResult();
+    }
+
 }

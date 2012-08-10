@@ -7,7 +7,7 @@
         <div id="right_column" class="column">
             <div id="cart_block" class="block exclusive">
                 <h4>
-                    <a href="#">Cart</a>
+                    <a href="order.xhtml">Cart</a>
                 </h4>
                 <div class="block_content">
                     <div id="cart_block_list" class="expanded">
@@ -36,7 +36,7 @@
         <div id="right_column" class="column">
             <div id="cart_block" class="block exclusive">
                 <h4>
-                    <a href="#">Cart</a>
+                    <a href="order.xhtml">Cart</a>
                 </h4>
                 <div class="block_content">
                     <div id="cart_block_list" class="expanded">
@@ -47,9 +47,9 @@
                                         <span class="quantity-formated">
                                             <span class="quantity">#{lstCart.amountProduct}</span>x                                            
                                         </span>
-                                        <h:commandLink value="#{lstCart.nameProduct}" title="#{lstCart.nameProduct}" action="#{productBean.product(lstCart.idProduct)}"></h:commandLink>
+                                        <h:commandLink value="#{lstCart.nameProductCut()}" title="#{lstCart.nameProduct}" action="#{productBean.product(lstCart.idProduct)}"></h:commandLink>
                                         <span class="remove_link">                                            
-                                            <h:commandLink styleClass="ajax_cart_block_remove_link" action="#{productBean.product(lstCart.idProduct)}" rel="nofollow"/>
+                                            <h:commandLink styleClass="ajax_cart_block_remove_link" action="#{cartBean.deleteItem(lstCart.idProduct)}" rel="nofollow"/>
                                         </span>
                                         <span class="price">#{lstCart.totalProduct()}</span>
                                     </dt>

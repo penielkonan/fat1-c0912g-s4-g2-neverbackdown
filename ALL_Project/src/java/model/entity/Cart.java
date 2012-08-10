@@ -64,7 +64,13 @@ public class Cart {
         this.price = price;
     }
 
-    public  float totalProduct(){
+    public float totalProduct(){
         return amountProduct*price;
     }
+
+    public String nameProductCut(){
+        return nameProduct.substring(0, 17) + " ...";
+    }
+
+    
 }
