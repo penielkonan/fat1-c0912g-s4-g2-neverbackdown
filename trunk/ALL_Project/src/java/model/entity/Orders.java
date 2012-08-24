@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model.entity;
 
 import java.io.Serializable;
@@ -11,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,23 +29,28 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Orders", catalog = "ALL_Project", schema = "dbo")
 @NamedQueries({
-    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o"),
+    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o WHERE o.status = 1"),
     @NamedQuery(name = "Orders.findByOrderID", query = "SELECT o FROM Orders o WHERE o.orderID = :orderID"),
     @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate"),
+    @NamedQuery(name = "Orders.findByDeliveryAdress", query = "SELECT o FROM Orders o WHERE o.deliveryAdress = :deliveryAdress"),
     @NamedQuery(name = "Orders.findByRequireDate", query = "SELECT o FROM Orders o WHERE o.requireDate = :requireDate"),
     @NamedQuery(name = "Orders.findByShipDate", query = "SELECT o FROM Orders o WHERE o.shipDate = :shipDate"),
     @NamedQuery(name = "Orders.findByDeliveryDate", query = "SELECT o FROM Orders o WHERE o.deliveryDate = :deliveryDate"),
     @NamedQuery(name = "Orders.findByIsPay", query = "SELECT o FROM Orders o WHERE o.isPay = :isPay"),
     @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status")})
 public class Orders implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "OrderID", nullable = false)
     private Integer orderID;
     @Column(name = "OrderDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
+    @Column(name = "DeliveryAdress", length = 200)
+    private String deliveryAdress;
     @Column(name = "RequireDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date requireDate;
@@ -60,6 +66,12 @@ public class Orders implements Serializable {
     private Boolean status;
     @OneToMany(mappedBy = "orders")
     private Collection<OrderDetails> orderDetailsCollection;
+    @JoinColumn(name = "WareHouseID", referencedColumnName = "WareHouseID")
+    @ManyToOne
+    private WareHouses wareHouses;
+    @JoinColumn(name = "PaymentID", referencedColumnName = "PaymentID")
+    @ManyToOne
+    private Payments payments;
     @JoinColumn(name = "AccountID", referencedColumnName = "AccountID")
     @ManyToOne
     private Accounts accounts;
@@ -85,6 +97,14 @@ public class Orders implements Serializable {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public String getDeliveryAdress() {
+        return deliveryAdress;
+    }
+
+    public void setDeliveryAdress(String deliveryAdress) {
+        this.deliveryAdress = deliveryAdress;
     }
 
     public Date getRequireDate() {
@@ -135,6 +155,22 @@ public class Orders implements Serializable {
         this.orderDetailsCollection = orderDetailsCollection;
     }
 
+    public WareHouses getWareHouses() {
+        return wareHouses;
+    }
+
+    public void setWareHouses(WareHouses wareHouses) {
+        this.wareHouses = wareHouses;
+    }
+
+    public Payments getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Payments payments) {
+        this.payments = payments;
+    }
+
     public Accounts getAccounts() {
         return accounts;
     }
@@ -168,4 +204,19 @@ public class Orders implements Serializable {
         return "model.entity.Orders[orderID=" + orderID + "]";
     }
 
+    public String orderStatus(boolean b) {
+        if (b == true) {
+            return "Successful transactions";
+        } else {
+            return "Awaiting cheque payment";
+        }
+    }
+
+    public String paymentName(int paymentID) {
+        if (paymentID == 1) {
+            return "Cheque";
+        } else {
+            return "Bank wire";
+        }
+    }
 }

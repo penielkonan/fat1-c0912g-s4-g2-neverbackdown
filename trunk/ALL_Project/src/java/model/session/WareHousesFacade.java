@@ -5,6 +5,7 @@
 
 package model.session;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,4 +28,8 @@ public class WareHousesFacade extends AbstractFacade<WareHouses> {
         super(WareHouses.class);
     }
 
+    public String RegionByID(int id){
+        String eql ="SELECT w.region FROM WareHouses w WHERE w.wareHouseID = :wareHouseID";
+        return em.createQuery(eql).setParameter("wareHouseID", id).getSingleResult().toString();
+    }
 }

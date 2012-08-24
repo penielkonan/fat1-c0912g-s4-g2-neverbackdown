@@ -7,17 +7,16 @@ package model.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,33 +27,24 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Accounts.findAll", query = "SELECT a FROM Accounts a"),
     @NamedQuery(name = "Accounts.findByAccountID", query = "SELECT a FROM Accounts a WHERE a.accountID = :accountID"),
-    @NamedQuery(name = "Accounts.findByUserName", query = "SELECT a FROM Accounts a WHERE a.userName = :userName"),
+    @NamedQuery(name = "Accounts.findByEmail", query = "SELECT a FROM Accounts a WHERE a.email = :email"),
     @NamedQuery(name = "Accounts.findByPassword", query = "SELECT a FROM Accounts a WHERE a.password = :password"),
-    @NamedQuery(name = "Accounts.findByCreationDate", query = "SELECT a FROM Accounts a WHERE a.creationDate = :creationDate"),
     @NamedQuery(name = "Accounts.findByStatus", query = "SELECT a FROM Accounts a WHERE a.status = :status")})
 public class Accounts implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "AccountID", nullable = false)
     private Integer accountID;
-    @Column(name = "UserName", length = 50)
-    private String userName;
+    @Column(name = "Email", length = 50)
+    private String email;
     @Column(name = "Password", length = 50)
     private String password;
-    @Column(name = "CreationDate")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
     @Column(name = "Status")
     private Boolean status;
     @OneToMany(mappedBy = "accounts")
-    private Collection<AccountInformations> accountInformationsCollection;
-    @OneToMany(mappedBy = "accounts")
-    private Collection<Employees> employeesCollection;
-    @OneToMany(mappedBy = "accounts")
     private Collection<Orders> ordersCollection;
-    @OneToMany(mappedBy = "accounts")
-    private Collection<LogStores> logStoresCollection;
 
     public Accounts() {
     }
@@ -71,12 +61,12 @@ public class Accounts implements Serializable {
         this.accountID = accountID;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -87,14 +77,6 @@ public class Accounts implements Serializable {
         this.password = password;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
     public Boolean getStatus() {
         return status;
     }
@@ -103,36 +85,12 @@ public class Accounts implements Serializable {
         this.status = status;
     }
 
-    public Collection<AccountInformations> getAccountInformationsCollection() {
-        return accountInformationsCollection;
-    }
-
-    public void setAccountInformationsCollection(Collection<AccountInformations> accountInformationsCollection) {
-        this.accountInformationsCollection = accountInformationsCollection;
-    }
-
-    public Collection<Employees> getEmployeesCollection() {
-        return employeesCollection;
-    }
-
-    public void setEmployeesCollection(Collection<Employees> employeesCollection) {
-        this.employeesCollection = employeesCollection;
-    }
-
     public Collection<Orders> getOrdersCollection() {
         return ordersCollection;
     }
 
     public void setOrdersCollection(Collection<Orders> ordersCollection) {
         this.ordersCollection = ordersCollection;
-    }
-
-    public Collection<LogStores> getLogStoresCollection() {
-        return logStoresCollection;
-    }
-
-    public void setLogStoresCollection(Collection<LogStores> logStoresCollection) {
-        this.logStoresCollection = logStoresCollection;
     }
 
     @Override

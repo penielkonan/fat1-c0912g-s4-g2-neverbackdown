@@ -25,9 +25,16 @@ public class ProductBean {
     private ProductCategorysFacade productCategorysFacade;
     @EJB
     private ProductDetailsFacade productDetailsFacade;
-    
     private int idProductDetail, cateId;
-    private String cateName;
+    private String cateName, searchName;
+
+    public String getSearchName() {
+        return searchName;
+    }
+
+    public void setSearchName(String searchName) {
+        this.searchName = searchName;
+    }
 
     public String getCateName() {
         return cateName;
@@ -57,19 +64,31 @@ public class ProductBean {
     public ProductBean() {
     }
 
+    public List<ProductDetails> getListProduct() {
+        return productDetailsFacade.ListProduct();
+    }
+
     public List<ProductDetails> getListProductIndex() {
         return (List<ProductDetails>) productDetailsFacade.index(5);
     }
 
     public ProductDetails getProductDetail() {
-        return (ProductDetails) productDetailsFacade.detailProduct(idProductDetail);
+        return productDetailsFacade.detailProduct(idProductDetail);
     }
 
     public List<ProductDetails> getProductByCateId() {
         return (List<ProductDetails>) productDetailsFacade.cateProduct(cateId);
     }
 
-    public String getDetailCate(){
+    public List<ProductDetails> getListSearch() {
+        return productDetailsFacade.productSearch(searchName);
+    }
+
+    public String searchbutton() {
+        return "search";
+    }
+
+    public String getDetailCate() {
         return productCategorysFacade.detailCate(cateId).getDescription();
     }
 
@@ -86,5 +105,35 @@ public class ProductBean {
     public String product(int id) {
         idProductDetail = id;
         return "product";
+    }
+
+    /////////////////////////////////
+    /////////////////////////////////
+    ////////////////////////////////
+    ProductDetails pd = new ProductDetails();
+
+    public ProductDetails getPd() {
+        return pd;
+    }
+
+    public void setPd(ProductDetails pd) {
+        this.pd = pd;
+    }
+
+    public String editProduct(){
+        productDetailsFacade.updateProductdetail(pd);
+        return "products";
+    }
+
+    public String updateProduct(int id){
+        pd = productDetailsFacade.detailProduct(id);
+        return "product-detail";
+    }
+    
+    public String deleteProduct(int id) {
+        pd = productDetailsFacade.detailProduct(id);
+        pd.setStatus(false);
+        productDetailsFacade.deleteProductdetail(pd);
+        return "products";
     }
 }

@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:composition  xmlns:p="http://primefaces.org/ui" template="./../template/Template.xhtml" >
         <ui:define name="content">
-            <div id="columns" style="padding: 0">
+            <div id="columns" style="padding: 0;width: 1064px">
                 <div id="center_column" class="center_column" style="width: 1064px">
                     <div id="tmslider1">
                         <ul>
@@ -15,11 +15,15 @@
                                     <div class="f2">pisicing elit, sed do eiusmod tempor incididunt ut labore et</div>
                                     <div class="f3"></div>
                                     <div class="f4"></div>
-                                    <a class="slide_btn" href="#">SHOP NOW!</a>
+                                    <h:form>
+                                        <h:commandLink styleClass="slide_btn" action="#{productBean.product(4)}" value="SHOP NOW!"/>
+                                    </h:form>
                                 </div>
-                                <a href="product.php?id_product=12">
-                                    <img alt="" src="../modules/tmslider1/slides/slide_00.jpg"/>
-                                </a>
+                                <h:form>
+                                    <h:commandLink action="#{productBean.product(6)}">
+                                        <img alt="" src="../img/modules/tmslider1/slides/slide_00.jpg"/>
+                                    </h:commandLink>
+                                </h:form>
                             </li>
                             <li class="slide-2">
                                 <div class="slide_txt">
@@ -27,11 +31,15 @@
                                     <div class="f2">free</div>
                                     <div class="f3">+1 234 567 8901</div>
                                     <div class="f4">ipisicing elit, sed do eiusmod tempor incididunt ut </div>
-                                    <a class="slide_btn" href="category.php?id_category=5">Read more</a>
+                                    <h:form>
+                                        <h:commandLink styleClass="slide_btn" action="#{productBean.product(4)}" value="Read more"/>
+                                    </h:form>
                                 </div>
-                                <a href="category.php?id_category=5">
-                                    <img alt="" src="../modules/tmslider1/slides/slide_01.jpg"/>
-                                </a>
+                                <h:form>
+                                    <h:commandLink action="#{productBean.product(6)}">
+                                        <img alt="" src="../img/modules/tmslider1/slides/slide_01.jpg"/>
+                                    </h:commandLink>
+                                </h:form>
                             </li>
                             <li class="slide-3">
                                 <div class="slide_txt">
@@ -42,32 +50,34 @@
                                     <a class="slide_btn" href="http://facebook.com"></a>
                                 </div>
                                 <a href="http://facebook.com">
-                                    <img alt="" src="../modules/tmslider1/slides/slide_02.jpg"/>
+                                    <img alt="" src="../img/modules/tmslider1/slides/slide_02.jpg"/>
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div id="tmslider2">
-                        <ul>
-                            <li class="slide1">
-                                <div></div>
-                                <a href="product.php?id_product=12">
-                                    <img alt="" src="../modules/tmslider2/slides/slide_00.jpg"/>
-                                </a>
-                            </li>
-                            <li class="slide2">
-                                <div></div>
-                                <a href="category.php?id_category=5">
-                                    <img alt="" src="../modules/tmslider2/slides/slide_01.jpg"/>
-                                </a>
-                            </li>
-                            <li class="slide3">
-                                <div></div>
-                                <a href="product.php?id_product=7">
-                                    <img alt="" src="../modules/tmslider2/slides/slide_02.jpg"/>
-                                </a>
-                            </li>
-                        </ul>
+                        <h:form>
+                            <ul>
+                                <li class="slide1">
+                                    <div></div>
+                                    <h:commandLink action="#{productBean.product(1)}">
+                                        <img alt="" src="../img/modules/tmslider2/slides/slide_00.jpg"/>
+                                    </h:commandLink>
+                                </li>
+                                <li class="slide2">
+                                    <div></div>
+                                    <h:commandLink action="#{productBean.product(2)}">
+                                        <img alt="" src="../img/modules/tmslider2/slides/slide_01.jpg"/>
+                                    </h:commandLink>
+                                </li>
+                                <li class="slide3">
+                                    <div></div>
+                                    <h:commandLink action="#{productBean.product(3)}">
+                                        <img alt="" src="../img/modules/tmslider2/slides/slide_02.jpg"/>
+                                    </h:commandLink>
+                                </li>
+                            </ul>
+                        </h:form>
                     </div>
                     <div id="featured_products">
                         <h:form>

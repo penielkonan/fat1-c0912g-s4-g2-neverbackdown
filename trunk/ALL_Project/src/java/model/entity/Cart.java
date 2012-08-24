@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model.entity;
 
 /**
@@ -10,6 +9,7 @@ package model.entity;
  * @author Admin
  */
 public class Cart {
+
     private int idProduct;
     private String nameProduct;
     private String imgProduct;
@@ -64,13 +64,16 @@ public class Cart {
         this.price = price;
     }
 
-    public float totalProduct(){
-        return amountProduct*price;
+    public float totalProduct() {
+        return amountProduct * price;
     }
 
-    public String nameProductCut(){
-        return nameProduct.substring(0, 17) + " ...";
-    }
+    public String nameProductCut() {
+        if (nameProduct.length() < 17) {
+            return nameProduct;
+        } else {
+            return nameProduct.substring(0, 17) + " ...";
+        }
 
-    
+    }
 }

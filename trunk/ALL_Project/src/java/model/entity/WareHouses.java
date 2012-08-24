@@ -10,6 +10,8 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,6 +38,7 @@ import javax.persistence.Table;
 public class WareHouses implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "WareHouseID", nullable = false)
     private Integer wareHouseID;
@@ -55,9 +58,7 @@ public class WareHouses implements Serializable {
     @ManyToOne
     private Factorys factorys;
     @OneToMany(mappedBy = "wareHouses")
-    private Collection<ProductsInStock> productsInStockCollection;
-    @OneToMany(mappedBy = "wareHouses")
-    private Collection<ProductDetails> productDetailsCollection;
+    private Collection<Orders> ordersCollection;
 
     public WareHouses() {
     }
@@ -130,20 +131,12 @@ public class WareHouses implements Serializable {
         this.factorys = factorys;
     }
 
-    public Collection<ProductsInStock> getProductsInStockCollection() {
-        return productsInStockCollection;
+    public Collection<Orders> getOrdersCollection() {
+        return ordersCollection;
     }
 
-    public void setProductsInStockCollection(Collection<ProductsInStock> productsInStockCollection) {
-        this.productsInStockCollection = productsInStockCollection;
-    }
-
-    public Collection<ProductDetails> getProductDetailsCollection() {
-        return productDetailsCollection;
-    }
-
-    public void setProductDetailsCollection(Collection<ProductDetails> productDetailsCollection) {
-        this.productDetailsCollection = productDetailsCollection;
+    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+        this.ordersCollection = ordersCollection;
     }
 
     @Override
