@@ -51,8 +51,6 @@ public class Factorys implements Serializable {
     private Boolean status;
     @OneToMany(mappedBy = "factorys")
     private Collection<WareHouses> wareHousesCollection;
-    @OneToMany(mappedBy = "factorys")
-    private Collection<PlanDetails> planDetailsCollection;
 
     public Factorys() {
     }
@@ -123,14 +121,6 @@ public class Factorys implements Serializable {
 
     public void setWareHousesCollection(Collection<WareHouses> wareHousesCollection) {
         this.wareHousesCollection = wareHousesCollection;
-    }
-
-    public Collection<PlanDetails> getPlanDetailsCollection() {
-        return planDetailsCollection;
-    }
-
-    public void setPlanDetailsCollection(Collection<PlanDetails> planDetailsCollection) {
-        this.planDetailsCollection = planDetailsCollection;
     }
 
     @Override

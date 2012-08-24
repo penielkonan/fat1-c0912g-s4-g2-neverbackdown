@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,15 +28,19 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "OrderDetails.findAll", query = "SELECT o FROM OrderDetails o"),
     @NamedQuery(name = "OrderDetails.findByOrderDetailID", query = "SELECT o FROM OrderDetails o WHERE o.orderDetailID = :orderDetailID"),
+    @NamedQuery(name = "OrderDetails.findByPrice", query = "SELECT o FROM OrderDetails o WHERE o.price = :price"),
     @NamedQuery(name = "OrderDetails.findByAmount", query = "SELECT o FROM OrderDetails o WHERE o.amount = :amount"),
     @NamedQuery(name = "OrderDetails.findByTotalMoney", query = "SELECT o FROM OrderDetails o WHERE o.totalMoney = :totalMoney"),
     @NamedQuery(name = "OrderDetails.findByStatus", query = "SELECT o FROM OrderDetails o WHERE o.status = :status")})
 public class OrderDetails implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "OrderDetailID", nullable = false)
     private Integer orderDetailID;
+    @Column(name = "Price", precision = 19, scale = 4)
+    private BigDecimal price;
     @Column(name = "Amount")
     private Integer amount;
     @Column(name = "TotalMoney", precision = 19, scale = 4)
@@ -61,6 +67,14 @@ public class OrderDetails implements Serializable {
 
     public void setOrderDetailID(Integer orderDetailID) {
         this.orderDetailID = orderDetailID;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public Integer getAmount() {
@@ -126,6 +140,14 @@ public class OrderDetails implements Serializable {
     @Override
     public String toString() {
         return "model.entity.OrderDetails[orderDetailID=" + orderDetailID + "]";
+    }
+
+    public double totalPrice(){
+        return totalMoney.doubleValue();
+    }
+
+    public double priceByOrdetail(){
+        return price.doubleValue();
     }
 
 }

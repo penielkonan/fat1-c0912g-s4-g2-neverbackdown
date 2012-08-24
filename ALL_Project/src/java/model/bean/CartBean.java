@@ -21,7 +21,6 @@ public class CartBean {
     /** Creates a new instance of MyCart */
     public CartBean() {
     }
-
     private float priceOrder;
 
     public float getAllPrice() {
@@ -31,7 +30,6 @@ public class CartBean {
     public void setAllPrice(float priceOrder) {
         this.priceOrder = priceOrder;
     }
-
     private int amount = 1;
 
     public int getAmount() {
@@ -46,7 +44,6 @@ public class CartBean {
     public List<Cart> getListCart() {
         return lst;
     }
-
 
     public void addToCart(int id, String name, String img, float price) {
         boolean fag = false;
@@ -73,12 +70,13 @@ public class CartBean {
         }
     }
 
-    public void deleteItem(int id) {
+    public String deleteItem(int id) {
         for (int i = 0; i < lst.size(); i++) {
             if (lst.get(i).getIdProduct() == id) {
                 lst.remove(i);
             }
         }
+        return "order";
     }
 
     public float getPriceOrder() {
@@ -89,13 +87,35 @@ public class CartBean {
         return priceOrder;
     }
 
-    public int countProduct(){
+    public int countProduct() {
         int amountProduct = 0;
-        for (int i= 0; i < lst.size(); i++) {
-           amountProduct += lst.get(i).getAmountProduct();
+        for (int i = 0; i < lst.size(); i++) {
+            amountProduct += lst.get(i).getAmountProduct();
         }
         return amountProduct;
     }
 
-    
+    public String upProduct(int id) {
+        for (Cart cart : lst) {
+            if (cart.getIdProduct() == id) {
+                cart.setAmountProduct(cart.getAmountProduct() + amount);
+                amount += amount;
+                amount = 1;
+                return "order";
+            }
+        }
+        return "order";
+    }
+
+    public String downProduct(int id) {
+        for (Cart cart : lst) {
+            if (cart.getIdProduct() == id) {
+                cart.setAmountProduct(cart.getAmountProduct() - amount);
+                amount -= amount;
+                amount = 1;
+                return "order";
+            }
+        }
+        return "order";
+    }
 }

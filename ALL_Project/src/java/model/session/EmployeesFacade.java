@@ -27,4 +27,13 @@ public class EmployeesFacade extends AbstractFacade<Employees> {
         super(Employees.class);
     }
 
+    public String Department(String email){
+        String eql = "select e.departments.departmentID from Employees e where e.accounts.email =:email";
+        return em.createQuery(eql).setParameter("email", email).getSingleResult().toString();
+    }
+
+    public void CreateEmployee(Employees e){
+        em.persist(e);
+    }
+
 }
