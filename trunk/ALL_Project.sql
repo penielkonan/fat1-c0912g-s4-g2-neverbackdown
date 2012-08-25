@@ -70,7 +70,7 @@
 	
 		
 	CREATE TABLE Departments(
-		DepartmentID INT IDENTITY PRIMARY KEY,
+		DepartmentID INT IDENTITY PRIMARY KEY,		
 		DepartmentName VARCHAR(50),
 		[Description] VARCHAR(MAX),		
 	)
@@ -150,6 +150,7 @@
 	CREATE TABLE WareHouses(
 		WareHouseID INT IDENTITY PRIMARY KEY,
 		FactoryID INT FOREIGN KEY REFERENCES Factorys(FactoryID),
+		AccountID INT FOREIGN KEY REFERENCES Accounts(AccountID),
 		WareHouseName VARCHAR(50),
 		[Address] VARCHAR(50),
 		City VARCHAR(50),
@@ -160,9 +161,9 @@
 	
 	GO
 	
-	INSERT INTO WareHouses VALUES (1,'Ha Noi WareHouses','1A Yet Kieu','Auto Ancillaries Limited','Northern','Viet Nam',1)
-	INSERT INTO WareHouses VALUES (2,'Da Nang WareHouses','356 Tran Phu','Auto Ancillaries Limited','Central','Viet Nam',1)
-	INSERT INTO WareHouses VALUES (3,'Ho Chi Minh WareHouses','278 Cac Mang Thang 8','Auto Ancillaries Limited','Southern','Viet Nam',1)
+	INSERT INTO WareHouses VALUES (1,2,'Ha Noi WareHouses','1A Yet Kieu','Auto Ancillaries Limited','Northern','Viet Nam',1)
+	INSERT INTO WareHouses VALUES (2,3,'Da Nang WareHouses','356 Tran Phu','Auto Ancillaries Limited','Central','Viet Nam',1)
+	INSERT INTO WareHouses VALUES (3,4,'Ho Chi Minh WareHouses','278 Cac Mang Thang 8','Auto Ancillaries Limited','Southern','Viet Nam',1)
 
 	GO
 	
