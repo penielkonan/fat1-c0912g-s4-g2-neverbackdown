@@ -10,6 +10,8 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,6 +36,7 @@ import javax.persistence.Table;
 public class Factorys implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "FactoryID", nullable = false)
     private Integer factoryID;
@@ -51,6 +54,8 @@ public class Factorys implements Serializable {
     private Boolean status;
     @OneToMany(mappedBy = "factorys")
     private Collection<WareHouses> wareHousesCollection;
+    @OneToMany(mappedBy = "factorys")
+    private Collection<PlanDetails> planDetailsCollection;
 
     public Factorys() {
     }
@@ -121,6 +126,14 @@ public class Factorys implements Serializable {
 
     public void setWareHousesCollection(Collection<WareHouses> wareHousesCollection) {
         this.wareHousesCollection = wareHousesCollection;
+    }
+
+    public Collection<PlanDetails> getPlanDetailsCollection() {
+        return planDetailsCollection;
+    }
+
+    public void setPlanDetailsCollection(Collection<PlanDetails> planDetailsCollection) {
+        this.planDetailsCollection = planDetailsCollection;
     }
 
     @Override

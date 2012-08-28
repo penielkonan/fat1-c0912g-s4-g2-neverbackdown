@@ -42,4 +42,9 @@ public class OrderDetailsFacade extends AbstractFacade<OrderDetails> {
         return em.createQuery(eql).setParameter("orderID", orderID).getResultList();
     }
 
+    public double getTotalMoneyAll(){
+        String eql = "SELECT SUM (o.totalMoney) from OrderDetails o inner join o.orders od where od.isPay = 0";
+        return Double.parseDouble(em.createQuery(eql).getSingleResult().toString());
+    }
+
 }

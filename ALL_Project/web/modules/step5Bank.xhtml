@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <div id="center_column" class="center_column">
+        <h:form>
+            <div class="breadcrumb bordercolor">
+                <div class="breadcrumb_inner">
+                    <a title="return to Home" href="../customer/index.xhtml">Home</a>
+                    <span class="navigation-pipe">></span>
+                    <span class="navigation_page">Bank payment</span>
+                </div>
+            </div>
+            <h2>Order summary</h2>
+            <ul id="order_steps" class="step5">
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(1)}" value="Summary"/>
+                </li>
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(3)}" value="Login"/>
+                </li>
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(3)}" value="Address"/>
+                </li>
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(4)}" value="Shipping"/>
+                </li>
+                <li id="step_end" class="step_current">
+                    <span>Payment</span>
+                </li>
+            </ul>
+            <span> </span>
+            <h3>Bank payment</h3>
+            <p>
+                <img width="86" height="49" style="float:left; margin: 0px 10px 5px 0px;" alt="bank wire" src="../img/bankwire.jpg"/>
+                You have chosen to pay by bank wire.
+                <br/>
+                <br/>
+                Here is a short summary of your order:
+            </p>
+            <p style="margin-top:20px;">
+                - The total amount of your order is
+                <span id="amount" class="price">$#{cartBean.priceOrder}</span>
+                (tax incl.)
+            </p>
+            <p>
+                - We accept several currencies to be sent by bank wire.
+                <br/>
+                <br/>                
+                Payment one of the following: Dollar,Euro or Pound
+            </p>
+            <p>
+                Bank wire account information will be displayed on the next page.
+                <br/>
+                <br/>
+                <b>Please confirm your order by clicking 'I confirm my order'.</b>
+            </p>
+            <p class="cart_navigation">
+            <h:commandLink styleClass="button_large hideOnSubmit" action="#{orderStep.Order(5)}" value="« Previous"/>
+            <h:commandButton styleClass="exclusive_large hideOnSubmit" value="I confirm my order" action="#{orderStep.Finish(9,2)}"/>
+            </p>
+        </h:form>
+    </div>
+</ui:composition>

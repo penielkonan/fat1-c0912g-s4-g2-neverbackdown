@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"                
+                >
+
+    <div id="center_column" class="center_column">
+        <div class="breadcrumb bordercolor">
+            <div class="breadcrumb_inner">
+                <a title="return to Home" href="../customer/index.xhtml">Home</a>
+                <span class="navigation-pipe">></span>
+                <span class="navigation_page">Login</span>
+            </div>
+        </div>
+        <h1>Create your account</h1>
+        <ul id="order_steps" class="step2">
+            <li class="step_done">
+                <h:form>
+                    <h:commandLink action="#{orderStep.Order(0)}">Summary</h:commandLink>
+                </h:form>
+            </li>
+            <li class="step_current">
+                <span>Login</span>
+            </li>
+            <li class="step_todo">
+                <span>Address</span>
+            </li>
+            <li class="step_todo">
+                <span>Shipping</span>
+            </li>
+            <li id="step_end" class="step_todo">
+                <span>Payment</span>
+            </li>
+        </ul>
+        <span> </span>
+        <h:form id="account-creation_form" styleClass="std">
+            <fieldset class="account_creation">
+                <h3>Your personal information</h3>
+
+                <p class="required text">
+                    <label for="email">E-mail</label>
+                    <h:inputText id="email" value="#{orderStep.emailCreater}"/>
+                    <sup>*</sup>
+                </p>
+                <p class="required password">
+                    <label for="passwd">Password</label>
+                    <h:inputSecret id="passwd" value="#{orderStep.password}"/>
+                    <sup>*</sup>
+                    <span class="form_info">(5 characters min.)</span>
+                </p>
+
+            </fieldset>
+            <fieldset class="account_creation">
+                <h3>Your address</h3>
+                <p class="radio required">
+                    <span>Title</span>
+                    <h:selectOneRadio value="#{orderStep.title}">
+                        <f:selectItem id="id_gender1" itemValue="Mr." />
+                        <label class="top" for="id_gender1">Mr.</label>
+                        <f:selectItem id="id_gender2" itemValue="Ms." />
+                        <label class="top" for="id_gender2">Ms.</label>
+                    </h:selectOneRadio>
+                </p>
+                <p class="required text">
+                    <label for="firstname">First name</label>
+                    <h:inputText id="firstname" value="#{orderStep.fname}"/>                    
+                    <sup>*</sup>
+                </p>
+                <p class="required text">
+                    <label for="lastname">Last name</label>
+                    <h:inputText id="lastname" value="#{orderStep.lname}"/>                    
+                    <sup>*</sup>
+                </p>                
+                <!--                <p class="select text">
+                                    <span>Date of Birth</span>
+                                    <h:inputText id="date" value=""/>
+                                </p>-->
+                <p class="required text">
+                    <label for="address1">Date of Birth</label>
+                    <h:inputText id="date" value="#{orderStep.birthday}">
+                        <f:convertDateTime pattern="yyyy/dd/MM" />
+                    </h:inputText>
+                    <sup>*</sup>
+                    <span class="inline-infos">ex: yyyy/dd/mm</span>
+                </p>
+                <p class="text">
+                    <label for="company">Company</label>
+                    <h:inputText id="company" value="#{orderStep.company}"/>
+                </p>
+                <p class="required text">
+                    <label for="address1">Address</label>
+                    <h:inputText id="address1" value="#{orderStep.address}"/>
+                    <sup>*</sup>
+                    <span class="inline-infos">Street address, P.O. box, company name, c/o</span>
+                </p>
+                <p class="text">
+                    <label for="address2">Address (Line 2)</label>
+                    <h:inputText id="address2" value="#{orderStep.address2}"/>
+                    <span class="inline-infos">Apartment, suite, unit, building, floor, etc.</span>
+                </p>
+                <p class="required text">
+                    <label for="city">City</label>
+                    <h:inputText id="city" value="#{orderStep.city}"/>
+                    <sup>*</sup>
+                </p>
+                <p class="required id_state select text" style="display: block;">
+                    <label for="id_state">State</label>
+                    <h:inputText id="id_state" value="#{orderStep.state}"/>
+                </p>
+                <p class="required postcode text">
+                    <label for="postcode">Zip / Postal Code</label>
+                    <h:inputText id="postcode" value="#{orderStep.zip}" onkeyup="$('#postcode').val($('#postcode').val().toUpperCase());" />
+                    <sup>*</sup>
+                </p>
+                <p class="required select text">
+                    <label for="id_country">Country</label>
+                    <h:inputText id="id_country" value="#{orderStep.country}"/>
+                    <sup>*</sup>
+                </p>
+                <p class="textarea">
+                    <label for="other">Additional information</label>
+                    <h:inputTextarea id="other" rows="3" cols="26" value="#{orderStep.addinfo}"/>
+                </p>
+                <p class="required">
+                    You must register at least one phone number
+                    <sup>*</sup>
+                </p>
+                <p class="text">
+                    <label for="phone">Home phone</label>
+                    <h:inputText id="phone" value="#{orderStep.homephone}"/>
+                </p>
+                <p class="text">
+                    <label for="phone_mobile">Mobile phone</label>
+                    <h:inputText id="phone_mobile" value="#{orderStep.mobiphone}"/>
+                </p>
+                <p id="address_alias" class="required text">
+                    <label for="alias">Assign an address alias for future reference</label>
+                    <h:inputText id="alias" value="#{orderStep.addalias}"/>
+                    <sup>*</sup>
+                </p>
+            </fieldset>
+            <p class="required required_desc">
+                <span>
+                    <sup>*</sup>
+                    Required field
+                </span>
+            </p>
+            <p class="submit">
+                <h:commandButton id="submitAccount" styleClass="exclusive" value="Register" action="#{orderStep.createAccount}"/>
+            </p>
+
+        </h:form>
+    </div>
+</ui:composition>

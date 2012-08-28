@@ -69,7 +69,7 @@ public class ProductBean {
     }
 
     public List<ProductDetails> getListProductIndex() {
-        return (List<ProductDetails>) productDetailsFacade.index(5);
+        return productDetailsFacade.index(5);
     }
 
     public ProductDetails getProductDetail() {
@@ -77,7 +77,7 @@ public class ProductBean {
     }
 
     public List<ProductDetails> getProductByCateId() {
-        return (List<ProductDetails>) productDetailsFacade.cateProduct(cateId);
+        return productDetailsFacade.cateProduct(cateId);
     }
 
     public List<ProductDetails> getListSearch() {
@@ -110,8 +110,22 @@ public class ProductBean {
     /////////////////////////////////
     /////////////////////////////////
     ////////////////////////////////
+
+    private int cateChange;
+
+    public int getCateChange() {
+        return cateChange;
+    }
+
+    public void setCateChange(int cateChange) {
+        this.cateChange = cateChange;
+    }
+
+    
     ProductDetails pd = new ProductDetails();
 
+
+    
     public ProductDetails getPd() {
         return pd;
     }
@@ -120,14 +134,21 @@ public class ProductBean {
         this.pd = pd;
     }
 
+    public String newProduct(){
+        return "product-new";
+    }
+
+    
+
     public String editProduct(){
+        pd.setProductCategorys(new ProductCategorys(cateChange));
         productDetailsFacade.updateProductdetail(pd);
         return "products";
     }
 
     public String updateProduct(int id){
         pd = productDetailsFacade.detailProduct(id);
-        return "product-detail";
+        return "product-update";
     }
     
     public String deleteProduct(int id) {

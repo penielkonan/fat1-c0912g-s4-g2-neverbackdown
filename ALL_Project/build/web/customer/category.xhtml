@@ -4,11 +4,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
     <body>        
-        <ui:composition template="./../template/Template.xhtml"
-                        xmlns="http://www.w3.org/1999/xhtml"
+        <ui:composition template="./../template/Template.xhtml"                       
                         xmlns:f="http://java.sun.com/jsf/core"
                         xmlns:h="http://java.sun.com/jsf/html"
-                        xmlns:ui="http://java.sun.com/jsf/facelets">
+                        xmlns:ui="http://java.sun.com/jsf/facelets"
+                        xmlns="http://www.w3.org/1999/xhtml">
 
             <ui:define name="content">
                 <div id="columns">
@@ -28,7 +28,7 @@
                         </h1>
                         <p class="cat_desc bordercolor bgcolor">#{productBean.detailCate}</p>
                         <div class="product_sort">
-                            <form id="productsSortForm" action="#">
+                            <form id="productsSortForm" action="#" style="visibility: hidden">
                                 <label for="selectPrductSort">Sort by</label>
                                 <select id="selectPrductSort">
                                     <option selected="selected" value="position:asc">--</option>
@@ -40,8 +40,8 @@
                                 </select>
                             </form>
                             <ul class="product_view">
-                                <li id="product_view_grid" class="current"></li>
-                                <li id="product_view_list"></li>
+                                <li id="product_view_grid"></li>
+                                <li id="product_view_list" class="current"></li>                                
                             </ul>
                         </div>
                         <ul id="product_list" class="bordercolor list">
@@ -65,13 +65,13 @@
                                             </p>
                                         </div>
                                         <div class="right_block bordercolor">
-                                            <span class="on_sale">On sale!</span>
+                                            <span class="on_sale" style="visibility: hidden">On sale!</span>
                                             <span class="price">$#{lstCate.amount()}</span>
                                             <p class="compare checkbox">
-                                                <input id="comparator_item_list1" class="comparator" type="checkbox" value="comparator_item_1"/>
-                                                <label for="comparator_item_list1">Select to compare</label>
+                                                <input id="comparator_item_list1" style="display: none" class="comparator" type="checkbox" value="comparator_item_1"/>
+                                                <label for="comparator_item_list1" style="display: none">Select to compare</label>
                                             </p>
-                                            <h:commandLink styleClass="exclusive ajax_add_to_cart_button" title="Add to cart" action="#{cartBean.addToCart(lstCate.productID,lstCate.productName,lstCate.figure,lstCate.unitPrice)}">Add to cart</h:commandLink>
+                                            <h:commandLink styleClass="exclusive ajax_add_to_cart_button" title="Add to cart" action="#{cartBean.addToCart2(lstCate.productID,lstCate.productName,lstCate.figure,lstCate.unitPrice)}">Add to cart</h:commandLink>
                                             <br/>
                                             <h:commandLink styleClass="button" title="View" action="#{productBean.product(lstCate.productID)}">View</h:commandLink>
                                         </div>
@@ -79,9 +79,29 @@
                                 </ui:repeat>
                             </h:form>
                         </ul>
+                        <script>
+                            $("#product_view_grid").click(function(){
+                                  $("#product_view_grid").addClass("current");
+                                  $("#product_view_list").removeClass("current");
+                                  $("#product_list").removeClass("list");
+                                  $("#product_list").addClass("grid");
+                                  $(".product_flags").hide();
+                                  $(".product_descr").hide();
+                                  $(".button").hide();
+                                    })
+                            $("#product_view_list").click(function(){
+                                  $("#product_view_list").addClass("current");
+                                  $("#product_view_grid").removeClass("current");
+                                  $("#product_list").removeClass("grid");
+                                  $("#product_list").addClass("list");
+                                  $(".product_flags").show();
+                                  $(".product_descr").show();
+                                  $(".button").show();
+                                    })
+                        </script>
                     </div>
                     <ui:insert>
-                        <ui:include src="cartAjax.xhtml" />
+                        <ui:include src="../modules/cartAjax.xhtml" />
                     </ui:insert>
                 </div>
             </ui:define>

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+
+                        <ul class="maintabmenu">
+                            <li class="current"><a href="./warehouses.xhtml">WareHouses</a></li>
+                        </ul><!--maintabmenu-->
+
+                        <div class="content">
+
+                            <div class="contenttitle radiusbottom0">
+                                <h2 class="table"><span>WareHouse</span></h2>
+                            </div><!--contenttitle-->
+                            <div class="tableoptions">
+                                <button class="radius3" onclick="location.href='./factorys-new.xhtml'">
+                                    Add New WareHouse
+                                </button>
+                            </div><!--tableoptions-->
+                            <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                                <colgroup>
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="head1">WareHouse Id</th>
+                                        <th class="head0">Factory Name</th>
+                                        <th class="head1">Manager</th>
+                                        <th class="head0">WareHouse Name</th>
+                                        <th class="head1">Address</th>
+                                        <th class="head0">Company</th>
+                                        <th class="head1">Region</th>
+                                        <th class="head0">Country</th>
+                                        <th class="head1">&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th class="head1">WareHouse Id</th>
+                                        <th class="head0">Factory Name</th>
+                                        <th class="head1">Manager</th>
+                                        <th class="head0">WareHouse Name</th>
+                                        <th class="head1">Address</th>
+                                        <th class="head0">Company</th>
+                                        <th class="head1">Region</th>
+                                        <th class="head0">Country</th>
+                                        <th class="head1">&nbsp;</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <h:form>
+                                        <ui:repeat value="#{wareHouseBean.listWareHouse}" var="lstW">
+                                            <tr>
+                                                <td class="center">##{lstW.wareHouseID}</td>
+                                                <td class="center">#{lstW.factorys.factoryName}</td>
+                                                <td class="center">#{lstW.accounts.email}</td>
+                                                <td class="center">#{lstW.wareHouseName}</td>
+                                                <td class="center">#{lstW.address}</td>
+                                                <td class="center">#{lstW.city}</td>
+                                                <td class="center">#{lstW.region}</td>
+                                                <td class="center">#{lstW.country}</td>
+                                                <td class="center">
+                                                    <h:commandLink action="#{wareHouseBean.editWareHouse(lstW.wareHouseID)}" value="Edit" styleClass="edit"/>&nbsp;
+                                                    <h:commandLink styleClass="delete" value="Delete" action="#{wareHouseBean.deleteWareHouse(lstW.wareHouseID)}"/>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </h:form>
+                                </tbody>
+                            </table>
+
+                            <br /><br />
+
+                            <br clear="all" />
+
+                        </div><!--content-->
+
+                    </div><!--maincontentinner-->
+
+                    <div class="footer">
+                        <p>Starlight Admin Template &copy; 2012. All Rights Reserved. Designed by: <a href="">ThemePixels.com</a></p>
+                    </div><!--footer-->
+
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

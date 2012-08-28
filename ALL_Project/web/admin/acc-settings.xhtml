@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>Account Settings</span></h2>
+                        </div><!--contenttitle-->
+                        <br />
+                        <h:form id="myform" styleClass="stdform">
+                            <c:if test="#{accountBean.error == false}">
+
+                            </c:if>
+                            <c:if test="#{accountBean.error == true}">
+                                <div class="notification msgerror">
+                                    <a class="close"></a>
+                                    <p>
+                                        <h:outputText value="#{accountBean.errorDisplay}" />
+                                    </p>
+                                </div>
+                            </c:if>
+
+                            <p>
+                                <label>Current Password</label>
+                                <span class="field">
+                                    <h:inputSecret styleClass="longinput"  value="#{accountBean.oldpass}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>New Password</label>
+                                <span class="field">
+                                    <h:inputSecret styleClass="longinput"  value="#{accountBean.newpass}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Confirmation</label>
+                                <span class="field">
+                                    <h:inputSecret styleClass="longinput"  value="#{accountBean.confirmation}"/>
+                                </span>
+                            </p>
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Update" action="#{accountBean.changedPassAdmin}"/>
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

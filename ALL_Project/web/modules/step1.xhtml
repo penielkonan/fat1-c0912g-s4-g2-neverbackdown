@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html">
+    <div id="center_column" class="center_column">
+        <div class="breadcrumb bordercolor">
+            <div class="breadcrumb_inner">
+                <a title="return to Home" href="index.xhtml">Home</a>
+                <span class="navigation-pipe">></span>
+                <span class="navigation_page">Your shopping cart</span>
+            </div>
+        </div>
+        <h1 id="cart_title">Shopping cart summary</h1>
+        <ul id="order_steps" class="step1">
+            <li class="step_current">
+                <span>Summary</span>
+            </li>
+            <li class="step_todo">
+                <span>Login</span>
+            </li>
+            <li class="step_todo">
+                <span>Address</span>
+            </li>
+            <li class="step_todo">
+                <span>Shipping</span>
+            </li>
+            <li id="step_end" class="step_todo">
+                <span>Payment</span>
+            </li>
+        </ul>
+        <span> </span>
+        <p class="p-cart">
+            Your shopping cart contents
+            <span id="summary_products_quantity">#{cartBean.countProduct()} products</span>
+        </p>
+        <div id="order-detail-content" class="table_block">
+            <table id="cart_summary" class="std">
+                <thead>
+                    <tr>
+                        <th class="cart_product first_item">Product</th>
+                        <th class="cart_description item">Description</th>
+                        <th class="cart_ref item">Ref.</th>
+                        <th class="cart_availability item">Avail.</th>
+                        <th class="cart_unit item">Unit price</th>
+                        <th class="cart_quantity item">Qty</th>
+                        <th class="cart_total last_item">Total</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr class="cart_total_price">
+                        <td colspan="6">Total products (tax excl.):</td>
+                        <td id="total_product" class="price">
+                            <span class="price">$#{cartBean.priceOrder}</span>
+                        </td>
+                    </tr>
+                    <tr class="cart_total_delivery">
+                        <td colspan="6">Total shipping (tax excl.):</td>
+                        <td id="total_shipping" class="price">
+                            <span class="price">$0.00</span>
+                        </td>
+                    </tr>
+                    <tr class="cart_total_price">
+                        <td colspan="6"> Total (tax excl.): </td>
+                        <td id="total_price_without_tax" class="price">
+                            <span class="price">$#{cartBean.priceOrder}</span>
+                        </td>
+                    </tr>
+                    <tr class="cart_total_price">
+                        <td colspan="6"> Total (tax incl.): </td>
+                        <td id="total_price" class="price">
+                            <span class="price">$#{cartBean.priceOrder}</span>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <h:form id="CartStep">
+                        <ui:repeat value="#{cartBean.listCart}" var="lstCart">
+                            <tr id="product_2_7" class=" cart_item">
+                                <td class="cart_product">
+                                    <h:commandLink action="#{productBean.product(lstCart.idProduct)}">
+                                        <img width="66" height="66" alt="#{lstCart.nameProduct}" src="../../img/p/#{lstCart.imgProduct}"/>
+                                    </h:commandLink>
+                                </td>
+                                <td class="cart_description">
+                                    <h5>
+                                        <h:commandLink styleClass="product_link" action="#{productBean.product(lstCart.idProduct)}">#{lstCart.nameProduct}</h:commandLink>
+                                    </h5>
+                                </td>
+                                <td class="cart_ref">—</td>
+                                <td class="cart_availability">
+                                    <img width="30" height="30" alt="Available" src="../../img/icon/available.png"/>
+                                </td>
+                                <td class="cart_unit">
+                                    <span id="product_price_2_7" class="price"> $#{lstCart.price} </span>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div id="cart_quantity_button">
+                                        <h:commandLink styleClass="cart_quantity_up" title="Add" action="#{cartBean.upProduct(lstCart.idProduct)}">                                            
+                                            <img alt="Add" src="../../img/icon/quantity_up.png"/>
+                                        </h:commandLink>
+                                        <h:inputText style="top: 0;left: 0;" styleClass="cart_quantity_input text numbercheck" value="#{lstCart.amountProduct}" size="2"/>
+                                        <script>
+                                            $(".numbercheck").attr("name", "number");
+                                        </script>
+                                        <h:commandLink styleClass="cart_quantity_down" title="Subtract" action="#{cartBean.downProduct(lstCart.idProduct)}">                                            
+                                            <img alt="Subtract" src="../../img/icon/quantity_down.png"/>                                            
+                                        </h:commandLink>
+                                    </div>
+                                    <h:commandLink styleClass="cart_quantity_delete" title="Delete" action="#{cartBean.deleteItem(lstCart.idProduct)}">
+                                        <img class="icon" alt="Delete" src="../../img/icon/delete-cart.gif"/>
+                                    </h:commandLink>
+                                </td>
+                                <td class="cart_total">
+                                    <span id="total_product_price_2_7" class="price"> $#{lstCart.totalProduct()} </span>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </h:form>
+                </tbody>
+            </table>
+        </div>
+        <h:form>
+            <p class="cart_navigation">
+                <c:if test="#{orderStep.login == false}">
+                    <h:commandLink action="#{orderStep.Order(1)}" styleClass="exclusive" title="Next">Next »</h:commandLink>
+                </c:if>
+                <c:if test="#{orderStep.login == true}">
+                    <h:commandLink action="#{orderStep.Order(3)}" styleClass="exclusive" title="Next">Next »</h:commandLink>
+                </c:if>
+                <a class="button_large" title="Continue shopping" href="index.xhtml">« Continue shopping</a>
+            </p>
+        </h:form>
+    </div>
+</ui:composition>

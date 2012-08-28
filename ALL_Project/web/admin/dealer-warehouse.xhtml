@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">            
+            <ui:define name="maincontent">
+                <div class="maincontent">
+                    <div class="maincontentinner">
+
+                        <ul class="maintabmenu multipletabmenu">
+                            <li class="current"><a href="./wizard.html">Wizard</a></li>
+                        </ul><!--maintabmenu-->
+
+                        <div class="content">
+
+                            <div class="contenttitle">
+                                <h2 class="form" id="default"><span>Popup Wizard</span></h2>
+                            </div><!--contenttitle-->
+
+                            <br/><br/>
+
+                            <!-- START OF POPUP WIZARD -->
+                            <div style="display: none;">
+                                <div id="popwizard">
+
+                                    <form action="" method="post" class="stdform stdform2">
+                                        <div class="wizard" id="wizard4">
+
+                                            <ul class="hormenu anchor">
+                                                <li>
+                                                    <a href="#wiz1step4_1" class="selected" isdone="1" rel="1">
+                                                        <span class="h2">STEP 1</span>
+                                                        <span class="dot"><span></span></span>
+                                                        <span class="label">Basic Information</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#wiz1step4_2" class="disabled" isdone="0" rel="2">
+                                                        <span class="h2">STEP 2</span>
+                                                        <span class="dot"><span></span></span>
+                                                        <span class="label">Account Information</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#wiz1step4_3" class="disabled" isdone="0" rel="3">
+                                                        <span class="h2">STEP 3</span>
+                                                        <span class="dot"><span></span></span>
+                                                        <span class="label">Terms of Agreement</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                            <br clear="all"/><br/><br/>
+
+                                            <!--#wiz1step4_1-->
+
+                                            <!--#wiz1step4_2-->
+
+                                            <!--#wiz1step4_3-->
+
+                                            <div class="stepContainer" style="height: 0px;"><div class="formwiz content" id="wiz1step4_1" style="display: block;">
+                                                    <h2>Step 1: Basic Information</h2> <br/>
+
+                                                    <p>
+                                                        <label>First Name</label>
+                                                        <span class="field"><input type="text" class="longinput" name="firstname"/></span>
+                                                    </p>
+
+                                                    <p>
+                                                        <label>Last Name</label>
+                                                        <span class="field"><input type="text" class="longinput" name="lastname"/></span>
+                                                    </p>
+
+                                                    <p>
+                                                        <label>Gender</label>
+                                                        <span class="field"><select name="selection">
+                                                                <option value="">Choose One</option>
+                                                                <option value="1">Female</option>
+                                                                <option value="2">Male</option>
+                                                            </select></span>
+                                                    </p>
+
+
+
+                                                </div><div class="formwiz content" id="wiz1step4_2" style="display: none;">
+                                                    <h2>Step 2: Account Information</h2> <br/>
+
+                                                    <p>
+                                                        <label>Account No</label>
+                                                        <span class="field"><input type="text" class="longinput" name="lastname"/></span>
+                                                    </p>
+                                                    <p>
+                                                        <label>Address</label>
+                                                        <span class="field"><textarea name="location" rows="5" cols="80"></textarea></span>
+                                                    </p>
+
+                                                </div><div id="wiz1step4_3" class="content" style="display: none;">
+                                                    <h2>Step 3: Terms of Agreement</h2>
+                                                    <div class="par terms">
+                                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                                                        <p><input type="checkbox"/> I agree with the terms and agreement...</p>
+                                                    </div>
+                                                </div></div><div class="actionBar"><div class="loader">Loading</div><a href="#" class="buttonFinish buttonDisabled">Finish</a><a href="#" class="buttonNext">Next</a><a href="#" class="buttonPrevious buttonDisabled">Previous</a></div></div><!--#wizard-->
+                                    </form>
+
+                                    <br clear="all"/>
+
+                                </div><!--#popwizard-->
+                            </div>
+                            <!-- END OF POP WIZARD -->
+
+                        </div><!--content-->
+
+                    </div><!--maincontentinner-->
+
+                    <div class="footer">
+                        <p>Starlight Admin Template &copy; 2012. All Rights Reserved. Designed by: <a href="">ThemePixels.com</a></p>
+                    </div><!--footer-->
+
+                </div>
+            </ui:define>
+
+            <ui:define name="mainright">
+                <div class="mainright floatright">
+                    <div class="mainrightinner">
+
+                        <div class="widgetbox uncollapsible">
+                            <div class="title"><h2 class="general"><span>Examples</span></h2></div>
+                            <div class="widgetcontent">
+                                <ul class="linklist">
+                                    <li><a href="#default">Default Wizard</a></li>
+                                    <li><a href="#tabbed">Tabbed Wizard</a></li>
+                                    <li><a href="#vertical">Vertical Wizard</a></li>
+                                    <li><a href="#popwizard" class="inline">Popup Wizard</a></li>
+                                </ul>
+                            </div><!--widgetcontent-->
+                        </div><!--widgetbox-->
+
+                    </div><!--mainrightinner-->
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

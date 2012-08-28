@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+
+                        <ul class="maintabmenu">
+                            <li class="current"><a href="./factorys.xhtml">Factorys</a></li>
+                        </ul><!--maintabmenu-->
+
+                        <div class="content">
+
+                            <div class="contenttitle radiusbottom0">
+                                <h2 class="table"><span>Factory</span></h2>
+                            </div><!--contenttitle-->
+                            <div class="tableoptions">
+                                <button class="radius3" onclick="location.href='./factorys-new.xhtml'">
+                                    Add New Factory
+                                </button>
+                            </div><!--tableoptions-->
+                            <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                                <colgroup>
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                    <col class="con1" />
+                                    <col class="con0" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="head1">Factory Id</th>
+                                        <th class="head0">Factory Name</th>
+                                        <th class="head1">Address</th>
+                                        <th class="head0">City</th>
+                                        <th class="head1">Region</th>
+                                        <th class="head0">Country</th>
+                                        <th class="head1">&nbsp;</th>
+                                    </tr>
+                                </thead>
+
+                                <tfoot>
+                                    <tr>
+                                        <th class="head1">Factory Id</th>
+                                        <th class="head0">Factory Name</th>
+                                        <th class="head1">Address</th>
+                                        <th class="head0">City</th>
+                                        <th class="head1">Region</th>
+                                        <th class="head0">Country</th>
+                                        <th class="head1">&nbsp;</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <h:form>
+                                        <ui:repeat value="#{factoryBean.listFactory}" var="lstF">
+                                            <tr>
+                                                <td class="center">##{lstF.factoryID}</td>
+                                                <td class="center">#{lstF.factoryName}</td>
+                                                <td class="center">#{lstF.address}</td>
+                                                <td class="center">#{lstF.city}</td>
+                                                <td class="center">#{lstF.region}</td>
+                                                <td class="center">#{lstF.country}</td>
+                                                <td class="center">
+                                                    <h:commandLink action="#{factoryBean.editFactory(lstF.factoryID)}" value="Edit" styleClass="edit"/>&nbsp;
+                                                    <h:commandLink styleClass="delete" value="Delete" action="#{factoryBean.deleteFactory(lstF.factoryID)}"/>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </h:form>
+                                </tbody>
+                            </table>
+
+                            <br /><br />
+
+                            <br clear="all" />
+
+                        </div><!--content-->
+
+                    </div><!--maincontentinner-->
+
+                    <div class="footer">
+                        <p>Starlight Admin Template &copy; 2012. All Rights Reserved. Designed by: <a href="">ThemePixels.com</a></p>
+                    </div><!--footer-->
+
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

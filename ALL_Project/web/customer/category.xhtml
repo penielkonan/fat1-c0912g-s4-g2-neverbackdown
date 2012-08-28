@@ -4,11 +4,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
     <body>        
-        <ui:composition template="./../template/Template.xhtml"
-                        xmlns="http://www.w3.org/1999/xhtml"
+        <ui:composition template="./../template/Template.xhtml"                       
                         xmlns:f="http://java.sun.com/jsf/core"
                         xmlns:h="http://java.sun.com/jsf/html"
-                        xmlns:ui="http://java.sun.com/jsf/facelets">
+                        xmlns:ui="http://java.sun.com/jsf/facelets"
+                        xmlns="http://www.w3.org/1999/xhtml">
 
             <ui:define name="content">
                 <div id="columns">
@@ -71,7 +71,7 @@
                                                 <input id="comparator_item_list1" style="display: none" class="comparator" type="checkbox" value="comparator_item_1"/>
                                                 <label for="comparator_item_list1" style="display: none">Select to compare</label>
                                             </p>
-                                            <h:commandLink styleClass="exclusive ajax_add_to_cart_button" title="Add to cart" action="#{cartBean.addToCart(lstCate.productID,lstCate.productName,lstCate.figure,lstCate.unitPrice)}">Add to cart</h:commandLink>
+                                            <h:commandLink styleClass="exclusive ajax_add_to_cart_button" title="Add to cart" action="#{cartBean.addToCart2(lstCate.productID,lstCate.productName,lstCate.figure,lstCate.unitPrice)}">Add to cart</h:commandLink>
                                             <br/>
                                             <h:commandLink styleClass="button" title="View" action="#{productBean.product(lstCate.productID)}">View</h:commandLink>
                                         </div>

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>Profile</span></h2>
+                        </div><!--contenttitle-->
+                        <br />
+                        <h:form id="form1" styleClass="stdform">
+                            <p>
+                                <label>Title</label>
+                                <span class="formwrapper">
+                                    <h:selectOneRadio value="#{accountBean.acc.title}">
+                                        <f:selectItem id="id_gender1" itemValue="Mr." itemLabel="Mr." />
+                                        <f:selectItem id="id_gender2" itemValue="Ms." itemLabel="Ms."/>
+                                    </h:selectOneRadio>
+                                    <style>
+                                        table {
+                                            display: block;
+                                            margin-left: -30px;
+                                            margin-top: -15px;
+                                        }
+                                        table tr td input[type="radio"]{
+                                            margin-top: 6px !important;
+                                        }
+                                        table tr td label{
+                                            width: 20px !important;
+                                            margin-left: 10px;
+                                        }
+                                    </style>
+                                </span>
+                            </p>
+                            <p>
+                                <label>First name</label>
+                                <span class="field">
+                                     <h:inputText styleClass="longinput" id="firstname" value="#{accountBean.acc.firstName}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Last name</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" id="lastname" value="#{accountBean.acc.lastName}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Date of Birth</label>
+                                <span class="field">
+                                     <h:inputText styleClass="longinput" id="date" value="#{accountBean.acc.birthDate}">
+                                        <f:convertDateTime pattern="yyyy/dd/MM" />
+                                    </h:inputText>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Company</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" id="company" value="#{accountBean.acc.company}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Address</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.address}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Address (Line 2)</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.address2}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>City</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.city}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>State</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.state}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Zip / Postal Code</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.zip}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Country</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.country}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Additional information</label>
+                                <span class="field">
+                                    <h:inputTextarea  styleClass="longinput" rows="5" cols="80" value="#{accountBean.acc.additionalInformation}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Home phone</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.homePhone}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Mobile phone</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.tel}"/>
+                                </span>
+                            </p><p>
+                                <label>Assign an address alias for future reference</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{accountBean.acc.addressAlias}"/>
+                                </span>
+                            </p>
+
+
+                            <br />
+
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Update" action="#{accountBean.updateaccAdmin}"/>
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+
+    </body>
+</html>

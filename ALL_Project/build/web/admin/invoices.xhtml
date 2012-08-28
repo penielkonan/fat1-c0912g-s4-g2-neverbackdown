@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+
+                    <div class="maincontentinner">
+
+                        <ul class="maintabmenu">
+                            <li class="current"><a href="./dashboard.html">Invoices</a></li>
+                        </ul><!--maintabmenu-->
+
+                        <div class="content">
+
+                            <div class="contenttitle radiusbottom0">
+                                <h2 class="table"><span>Invoices</span></h2>
+                            </div><!--contenttitle-->
+                            <div class="tableoptions">
+                                <button class="radius3">Apply Filter</button>
+                            </div><!--tableoptions-->
+                            <c:if test="#{accountBean.admin == true}">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                                    <colgroup>
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="head0"><input type="checkbox" class="checkall" /></th>
+                                            <th class="head1">Order Id</th>
+                                            <th class="head0">Address</th>
+                                            <th class="head1">Region</th>
+                                            <th class="head0">Order Date</th>
+                                            <th class="head1">Status</th>
+                                            <th class="head0">Total (tax incl)</th>
+                                            <th class="head1">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th class="head0"><input type="checkbox" class="checkall" /></th>
+                                            <th class="head1">Order Id</th>
+                                            <th class="head0">Address</th>
+                                            <th class="head1">Region</th>
+                                            <th class="head0">Order Date</th>
+                                            <th class="head1">Status</th>
+                                            <th class="head0">Total (tax incl)</th>
+                                            <th class="head1">&nbsp;</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <h:form>
+                                            <ui:repeat value="#{invoicesBean.listOrder}" var="lstInvoi">
+                                                <tr>
+                                                    <td class="center"><input type="checkbox" /></td>
+                                                    <td>##{lstInvoi.orderID}</td>
+                                                    <td>#{lstInvoi.deliveryAdress}</td>
+                                                    <td>#{lstInvoi.wareHouses.region}</td>
+                                                    <td>
+                                                        <h:outputText value="#{lstInvoi.orderDate}">
+                                                            <f:convertDateTime pattern="yyyy/dd/MM HH:mm" />
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td class="center">#{lstInvoi.orderStatus(lstInvoi.isPay)}</td>
+                                                    <td class="center">$#{invoicesBean.TotalMoneyByOrderID(lstInvoi.orderID)}</td>
+                                                    <td class="center">
+                                                        <h:commandLink action="#{invoicesBean.editInvoice(lstInvoi.orderID)}" value="Edit" styleClass="edit"/>&nbsp;
+                                                        <h:commandLink styleClass="delete" value="Delete" action="#{invoicesBean.deleteInvoice(lstInvoi.orderID)}"/>
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </h:form>
+                                    </tbody>
+                                </table>
+
+                                <br /><br />
+                                
+                            </c:if>
+                            <c:if test="#{accountBean.admin == false}">
+                                <table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                                    <colgroup>
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                        <col class="con0" />
+                                        <col class="con1" />
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="head0"><input type="checkbox" class="checkall" /></th>
+                                            <th class="head1">Order Id</th>
+                                            <th class="head0">Address</th>
+                                            <th class="head1">Region</th>
+                                            <th class="head0">Order Date</th>
+                                            <th class="head1">Status</th>
+                                            <th class="head0">Total (tax incl)</th>
+                                            <th class="head1">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th class="head0"><input type="checkbox" class="checkall" /></th>
+                                            <th class="head1">Order Id</th>
+                                            <th class="head0">Address</th>
+                                            <th class="head1">Region</th>
+                                            <th class="head0">Order Date</th>
+                                            <th class="head1">Status</th>
+                                            <th class="head0">Total (tax incl)</th>
+                                            <th class="head1">&nbsp;</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <h:form>
+                                            <ui:repeat value="#{invoicesBean.listDealerAutoLogin}" var="lstInvoia">
+                                                <tr>
+                                                    <td class="center"><input type="checkbox" /></td>
+                                                    <td>##{lstInvoia.orderID}</td>
+                                                    <td>#{lstInvoia.deliveryAdress}</td>
+                                                    <td>#{lstInvoia.wareHouses.region}</td>
+                                                    <td>
+                                                        <h:outputText value="#{lstInvoia.orderDate}">
+                                                            <f:convertDateTime pattern="yyyy/dd/MM HH:mm" />
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td class="center">#{lstInvoia.orderStatus(lstInvoia.isPay)}</td>
+                                                    <td class="center">$#{invoicesBean.TotalMoneyByOrderID(lstInvoia.orderID)}</td>
+                                                    <td class="center">
+                                                        <h:commandLink action="#{invoicesBean.editInvoice(lstInvoia.orderID)}" value="Edit" styleClass="edit"/>&nbsp;
+                                                        <h:commandLink styleClass="delete" value="Delete" action="#{invoicesBean.deleteInvoice(lstInvoia.orderID)}"/>
+                                                    </td>
+                                                </tr>
+                                            </ui:repeat>
+                                        </h:form>
+                                    </tbody>
+                                </table>
+                                <br /><br />
+                                
+                            </c:if>
+                            <br clear="all" />
+
+                        </div><!--content-->
+
+                    </div><!--maincontentinner-->
+
+                    <div class="footer">
+                        <p>Starlight Admin Template &copy; 2012. All Rights Reserved. Designed by: <a href="">ThemePixels.com</a></p>
+                    </div><!--footer-->
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

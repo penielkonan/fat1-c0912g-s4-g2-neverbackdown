@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -43,8 +45,17 @@ public class Accounts implements Serializable {
     private String password;
     @Column(name = "Status")
     private Boolean status;
+    @JoinColumn(name = "DepartmentID", referencedColumnName = "DepartmentID")
+    @ManyToOne
+    private Departments departments;
+    @OneToMany(mappedBy = "accounts")
+    private Collection<WareHouses> wareHousesCollection;
+    @OneToMany(mappedBy = "accounts")
+    private Collection<AccountInformations> accountInformationsCollection;
     @OneToMany(mappedBy = "accounts")
     private Collection<Orders> ordersCollection;
+    @OneToMany(mappedBy = "accounts")
+    private Collection<LogStores> logStoresCollection;
 
     public Accounts() {
     }
@@ -85,12 +96,44 @@ public class Accounts implements Serializable {
         this.status = status;
     }
 
+    public Departments getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Departments departments) {
+        this.departments = departments;
+    }
+
+    public Collection<WareHouses> getWareHousesCollection() {
+        return wareHousesCollection;
+    }
+
+    public void setWareHousesCollection(Collection<WareHouses> wareHousesCollection) {
+        this.wareHousesCollection = wareHousesCollection;
+    }
+
+    public Collection<AccountInformations> getAccountInformationsCollection() {
+        return accountInformationsCollection;
+    }
+
+    public void setAccountInformationsCollection(Collection<AccountInformations> accountInformationsCollection) {
+        this.accountInformationsCollection = accountInformationsCollection;
+    }
+
     public Collection<Orders> getOrdersCollection() {
         return ordersCollection;
     }
 
     public void setOrdersCollection(Collection<Orders> ordersCollection) {
         this.ordersCollection = ordersCollection;
+    }
+
+    public Collection<LogStores> getLogStoresCollection() {
+        return logStoresCollection;
+    }
+
+    public void setLogStoresCollection(Collection<LogStores> logStoresCollection) {
+        this.logStoresCollection = logStoresCollection;
     }
 
     @Override

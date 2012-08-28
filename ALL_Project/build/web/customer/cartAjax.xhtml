@@ -7,7 +7,10 @@
         <div id="right_column" class="column">
             <div id="cart_block" class="block exclusive">
                 <h4>
-                    <a href="order.xhtml">Cart</a>
+                    <h:form>
+                        <h:commandLink action="#{orderStep.Order(0)}" value="Cart"/>
+                    </h:form>
+<!--                    <a href="order.xhtml">Cart</a>-->
                 </h4>
                 <div class="block_content">
                     <div id="cart_block_list" class="expanded">
@@ -36,7 +39,9 @@
         <div id="right_column" class="column">
             <div id="cart_block" class="block exclusive">
                 <h4>
-                    <a href="order.xhtml">Cart</a>
+                    <h:form>
+                        <h:commandLink action="#{orderStep.Order(0)}" value="Cart"/>
+                    </h:form>
                 </h4>
                 <div class="block_content">
                     <div id="cart_block_list" class="expanded">
@@ -67,8 +72,11 @@
                             </div>
                             <p id="cart-price-precisions"> Prices are tax excluded </p>
                             <p id="cart-buttons">
-                                <a class="button_mini" title="Cart" href="#">Cart</a>
-                                <a id="button_order_cart" class="button_small" title="Check out" href="#">Check out</a>
+                                <h:form>
+                                    <h:commandLink styleClass="button_mini" title="Cart" action="#{orderStep.Order(0)}"/>
+                                </h:form>
+<!--                                <a class="button_mini" title="Cart" href="#">Cart</a>-->
+<!--                                <a id="button_order_cart" class="button_small" title="Check out" href="#">Check out</a>-->
                             </p>
                         </div>
                     </div>
