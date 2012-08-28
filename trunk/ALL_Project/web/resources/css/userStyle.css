@@ -1955,6 +1955,12 @@ form.std .text2 label, form.std .password label, form.std .textarea label, form.
     text-align: left;
 }
 
+#login_form label.error,#create-account_form label.error{
+    color: red;
+    width: 270px;
+}
+
+
 form.std input[type="text"], form.std input[type="password"], form.std textarea {
     -moz-transition: border-color 0.6s ease 0s;
     background: none repeat scroll 0 0 #F1F1F1;
@@ -2044,6 +2050,19 @@ form.std .text label, form.std .password label, form.std .textarea label, form.s
     text-align: right;
     width: 150px;
 }
+
+#account-creation_form label.error {
+    color: red;
+    width: 250px;
+    float: right;
+}
+
+#addressStep label.error{
+    color: red;
+    width: 250px;
+    float: right;
+}
+
 
 form.std .required sup {
     color: #DA0F00;
@@ -2179,6 +2198,12 @@ div.order_address p.select label {
 .checkbox label, .radio label {
     padding: 0 0 0 3px;
     width: auto;
+}
+
+.checkbox label.error{
+    color: red;
+    width: 250px;
+    float: right ;
 }
 
 ul.item {
@@ -2403,5 +2428,11 @@ div.table_block {
 
 table.std {
     width: 100%;
+}
+
+form.identity label.error{
+    float:right;
+    color:red;
+    width: 280px;
 }
 

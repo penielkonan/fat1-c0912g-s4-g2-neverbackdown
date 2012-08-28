@@ -70,13 +70,64 @@ public class CartBean {
         }
     }
 
-    public String deleteItem(int id) {
+    public String addToCart2(int id, String name, String img, float price) {
+        boolean fag = false;
+        if (amount == 0) {
+        } else {
+            if (lst.size() == 0) {
+                Cart c = new Cart(id, name, img, amount, price);
+                lst.add(c);
+                amount = 1;
+            } else {
+                for (Cart cart : lst) {
+                    if (cart.getIdProduct() == id) {
+                        cart.setAmountProduct(cart.getAmountProduct() + amount);
+                        amount = 1;
+                        fag = true;
+                    }
+                }
+                if (fag == false) {
+                    Cart c = new Cart(id, name, img, amount, price);
+                    lst.add(c);
+                    amount = 1;
+                }
+            }
+        }
+        return "category";
+    }
+
+    public String addToCart3(int id, String name, String img, float price) {
+        boolean fag = false;
+        if (amount == 0) {
+        } else {
+            if (lst.size() == 0) {
+                Cart c = new Cart(id, name, img, amount, price);
+                lst.add(c);
+                amount = 1;
+            } else {
+                for (Cart cart : lst) {
+                    if (cart.getIdProduct() == id) {
+                        cart.setAmountProduct(cart.getAmountProduct() + amount);
+                        amount = 1;
+                        fag = true;
+                    }
+                }
+                if (fag == false) {
+                    Cart c = new Cart(id, name, img, amount, price);
+                    lst.add(c);
+                    amount = 1;
+                }
+            }
+        }
+        return "category";
+    }
+
+    public void deleteItem(int id) {
         for (int i = 0; i < lst.size(); i++) {
             if (lst.get(i).getIdProduct() == id) {
                 lst.remove(i);
             }
-        }
-        return "order";
+        }        
     }
 
     public float getPriceOrder() {

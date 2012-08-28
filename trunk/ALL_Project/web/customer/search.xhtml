@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <span class="navigation_page">Search </span>
+                            </div>
+                        </div>
+                        <h1> Search "#{productBean.searchName}"</h1>
+                        <c:if test="#{productBean.listSearch.size() == 0}">
+                            <p class="warning"> No results found for your search "#{productBean.searchName}" </p>
+                        </c:if>
+                        <c:if test="#{productBean.listSearch.size() != 0}">
+                            <h3 class="search_results">#{productBean.listSearch.size()} result has been found.</h3>
+                            <h:form>
+                                <ul id="product_list" class="bordercolor list">
+                                    <ui:repeat value="#{productBean.listSearch}" var="lst">
+                                        <li class="ajax_block_product bordercolor">
+                                            <h:commandLink styleClass="product_img_link" title="#{lst.productName}" action="#{productBean.product(lst.productID)}">
+                                                <img alt="#{lst.productName}" src="../../img/p/#{lst.figure}"/>
+                                            </h:commandLink>
+                                            <div class="center_block">
+                                                <div class="product_flags">
+                                                    <span class="new">New!</span>
+                                                    <span class="availability bordercolor">Available</span>
+                                                    <span class="online_only bordercolor">Online only!</span>
+                                                </div>
+                                                <h3>
+                                                    <h:commandLink styleClass="product_link" title="#{lst.productName}" action="#{productBean.product(lst.productID)}">#{lst.productName}</h:commandLink>
+                                                </h3>
+                                                <p class="product_desc">
+                                                    <h:commandLink styleClass="product_descr" action="#{productBean.product(lst.productID)}">#{lst.toDetailsCut()}</h:commandLink>
+                                                </p>
+                                            </div>
+                                            <div class="right_block bordercolor">
+                                                <span class="on_sale" style="visibility: hidden">On sale!</span>
+                                                <span class="price">$#{lst.amount()}</span>
+                                                <p class="compare checkbox">
+                                                    <input id="comparator_item_list1" style="display: none" class="comparator" type="checkbox" value="comparator_item_1"/>
+                                                    <label for="comparator_item_list1" style="display: none">Select to compare</label>
+                                                </p>
+                                                <h:commandLink styleClass="exclusive ajax_add_to_cart_button" title="Add to cart" action="#{cartBean.addToCart(lst.productID,lst.productName,lst.figure,lst.unitPrice)}">Add to cart</h:commandLink>
+                                                <br/>
+                                                <h:commandLink styleClass="button" title="View" action="#{productBean.product(lst.productID)}">View</h:commandLink>
+                                            </div>
+                                        </li>
+                                    </ui:repeat>
+                                </ul>
+                            </h:form>
+                        </c:if>
+                    </div>
+                    <ui:insert>
+                        <ui:include src="../modules/cartAjax.xhtml" />
+                    </ui:insert>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

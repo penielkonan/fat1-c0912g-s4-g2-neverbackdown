@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard | Starlight Premium Admin Template</title>
+        <link rel="stylesheet" href="./css/style.css" type="text/css" />
+        <!--[if IE 9]>
+            <link rel="stylesheet" media="screen" href="css/ie9.css"/>
+        <![endif]-->
+
+        <!--[if IE 8]>
+            <link rel="stylesheet" media="screen" href="css/ie8.css"/>
+        <![endif]-->
+
+        <!--[if IE 7]>
+            <link rel="stylesheet" media="screen" href="css/ie7.css"/>
+        <![endif]-->
+        <!--        <script type="text/javascript" src="./js/plugins/jquery-1.7.min.js"></script>
+                <script type="text/javascript" src="./js/plugins/jquery.flot.min.js"></script>
+                <script type="text/javascript" src="./js/plugins/jquery.flot.resize.min.js"></script>
+                <script type="text/javascript" src="./js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+                <script type="text/javascript" src="./js/custom/general.js"></script>
+                <script type="text/javascript" src="./js/custom/dashboard.js"></script>-->
+        <!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </h:head>
+    <h:body styleClass="loggedin">
+
+        <!-- START OF HEADER -->
+        <div class="header radius3">
+            <div class="headerinner">
+
+                <a href=""><img src="./images/starlight_admin_template_logo_small.png" alt="" /></a>
+
+
+                <div class="headright">
+                    <div class="headercolumn">&nbsp;</div>
+                    <div id="searchPanel" class="headercolumn">
+                        <div class="searchbox">
+                            <form action="" method="post">
+                                <input type="text" id="keyword" name="keyword" class="radius2" value="Search here" />
+                            </form>
+                        </div><!--searchbox-->
+                    </div><!--headercolumn-->
+                    <div id="userPanel" class="headercolumn">
+                        <a href="" class="userinfo radius2">
+                            <img src="./images/avatar.png" alt="" class="radius2" />
+                            <ui:repeat value="#{accountBean.accInfoByEmail}" var="lst">
+                                <span><strong> #{lst.lastName} #{lst.firstName}</strong></span>
+                            </ui:repeat>
+                        </a>
+                        <h:form>
+                            <div class="userdrop">
+                                <ul>
+                                    <li>
+                                        <h:commandLink action="#{accountBean.profile}" value="Profile"/>
+                                    </li>
+                                    <li>
+                                        <a href="acc-settings.xhtml">Account Settings</a>
+                                    </li>
+                                    <li>
+                                        <h:commandLink action="#{accountBean.logOut}" value="Logout"/>
+                                    </li>
+                                </ul>
+                            </div><!--userdrop-->
+                        </h:form>
+                    </div><!--headercolumn-->
+                </div><!--headright-->
+
+            </div><!--headerinner-->
+        </div><!--header-->
+        <!-- END OF HEADER -->
+
+        <!-- START OF MAIN CONTENT -->
+        <div class="mainwrapper">
+            <div class="mainwrapperinner">
+
+                <div class="mainleft">
+                    <div class="mainleftinner">
+                        
+                            <div class="leftmenu">
+                                <h:form>
+                                    <ul>
+                                        <li class="current"><a href="./dashboard.xhtml" class="dashboard"><span>Dashboard</span></a></li>
+                                        <li><a href="#" class="widgets menudrop"><span>Account</span></a>
+                                            <ul>
+                                                <li><a href="./accounts-customer.xhtml"><span>Customers</span></a></li>
+                                                <li><a href="./accounts-dealer.xhtml"><span>Dealers</span></a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="./invoices.xhtml" class="tables menudrop"><span>Invoices</span></a>
+                                            <ul>
+                                                <ui:repeat value="#{wareHouseBean.listWareHouseNoStatus}" var="lstW">
+                                                    <li>
+                                                        <h:commandLink value="" action="#{wareHouseBean.WareHouseRegion(lstW.wareHouseID)}">
+                                                            <span>
+                                                                #{lstW.region}
+                                                            </span>
+                                                        </h:commandLink>
+                                                    </li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="./products.xhtml" class="elements"><span>Products</span></a></li>
+                                        <li><a href="./factorys.xhtml" class="elements"><span>Factory</span></a></li>
+                                        <li><a href="./warehouses.xhtml" class="elements"><span>WareHouse</span></a></li>
+                                                                            <li><a href="./media.xhtml" class="media"><span>Media</span></a></li>
+                                                                            <li><a href="./form.xhtml" class="editor menudrop"><span>Forms</span></a>
+                                                                                <ul>
+                                                                                    <li><a href="./form.xhtml"><span>Form Styling</span></a></li>
+                                                                                    <li><a href="./editor.xhtml"><span>WYSIWYG Editor</span></a></li>
+                                                                                    <li><a href="./wizard.xhtml"><span>Wizard</span></a></li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li><a href="./grid.xhtml" class="grid"><span>Grid</span></a></li>
+                                                                            <li><a href="./calendar.xhtml" class="calendar"><span>Calendar</span></a></li>
+                                                                            <li><a href="./buttons.xhtml" class="buttons"><span>Buttons &amp; Icons</span></a></li>
+                                                                            <li><a href="./chat.xhtml" class="chat"><span>Chat Support</span></a></li>
+                                                                            <li><a href="./404.xhtml" class="error"><span>Error Pages</span></a></li>
+                                    </ul>
+                                </h:form>
+                            </div><!--leftmenu-->                                              
+                        <div id="togglemenuleft"><a></a></div>
+                    </div><!--mainleftinner-->
+                </div><!--mainleft-->
+
+                <!--===========================-->
+                <!--===========================-->
+                <!--===========================-->
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>New Product</span></h2>
+                        </div><!--contenttitle-->
+                        <br />
+                        <h:form styleClass="stdform" enctype="multipart/form-data">
+                            <p>
+                                <label>Images</label>
+                                <p:fileUpload widgetVar="uploader" fileUploadListener="#{fileUploadBean.fileUpload}"/>
+                                <style>
+                                    .uploadifyQueueItem{
+                                        margin-left: 220px;
+                                        margin-bottom: 10px;
+                                    }
+                                    form a{
+                                        margin-left: 230px;
+                                    }
+                                    form a + a{
+                                        margin-left: 10px;
+                                    }
+                                </style>
+                                <img style="padding-left: 100px;" width="50" height="50" src="../img/p/#{fileUploadBean.img}"/>
+                            </p>
+                        </h:form>                        
+                        <h:form id="form1" styleClass="stdform">
+                            <p>
+                                <label>Product Name</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.productName}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Product Detail</label>
+                                <span class="field">
+                                    <h:inputTextarea  styleClass="longinput" rows="5" cols="80" value="#{fileUploadBean.pdn.productDetail}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>More Info</label>
+                                <span class="field">
+                                    <h:inputTextarea id="location" styleClass="longinput" rows="5" cols="80" value="#{fileUploadBean.pdn.productMoreInfo}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Price</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.unitPrice}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Width</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.width}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Height</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.height}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Depth</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.depth}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Weight</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.weight}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Sizes</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{fileUploadBean.pdn.sizes}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Category</label>
+                                <span class="field">
+                                    <h:selectOneMenu id="selection" value="#{fileUploadBean.cateChange}">
+                                        <f:selectItems value="#{categoryBean.listCategory}" var="lst" itemLabel="#{lst.productCategoryName}" itemValue="#{lst.productCategoryID}" />
+                                    </h:selectOneMenu>
+                                </span>
+                            </p>
+
+                            <br />
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Add New Product" action="#{fileUploadBean.addProduct}"/>
+                            </p>      
+                        </h:form>
+                    </div>
+                </div>
+
+            </div><!--mainwrapperinner-->
+        </div><!--mainwrapper-->
+        <!-- END OF MAIN CONTENT -->
+    </h:body>
+</html>

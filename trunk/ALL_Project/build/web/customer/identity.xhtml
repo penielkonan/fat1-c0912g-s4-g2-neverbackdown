@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <a href="my-account.xhtml">My account</a>
+                                <span class="navigation-pipe">></span>
+                                Your personal information
+                            </div>
+                        </div>
+                        <h1>Your personal information</h1>
+                        <h3>Please be sure to update your personal information if it has changed.</h3>
+
+                        <h:form styleClass="std identity">
+                            <fieldset>
+                                <p class="radio required">
+                                    <span>Title</span>
+                                    <h:selectOneRadio value="#{accountBean.acc.title}">
+                                        <f:selectItem id="id_gender1" itemValue="Mr." />
+                                        <label style="display: inline-block;padding: 4px 25px 0 20px;" class="top" for="id_gender1">Mr.</label>
+                                        <f:selectItem id="id_gender2" itemValue="Ms." />
+                                        <label style="display: inline-block;padding: 4px 25px 0 20px;" class="top" for="id_gender2">Ms.</label>
+                                    </h:selectOneRadio>
+                                </p>
+                                <p class="required text">
+                                    <label for="firstname">First name</label>
+                                    <h:inputText id="firstname" styleClass="required" value="#{accountBean.acc.firstName}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required text">
+                                    <label for="lastname">Last name</label>
+                                    <h:inputText id="lastname" styleClass="required" value="#{accountBean.acc.lastName}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required text">
+                                    <label for="address1">Date of Birth</label>
+                                    <h:inputText id="date" styleClass="required" value="#{accountBean.acc.birthDate}">
+                                        <f:convertDateTime pattern="yyyy/dd/MM" />
+                                    </h:inputText>
+                                    <sup>*</sup>
+                                    <span class="inline-infos">ex: yyyy/dd/mm</span>
+                                </p>
+                                <p class="text">
+                                    <label for="company">Company</label>
+                                    <h:inputText id="company" value="#{accountBean.acc.company}"/>
+                                </p>
+                                <p class="required text">
+                                    <label for="address1">Address</label>
+                                    <h:inputText id="address1" styleClass="required" value="#{accountBean.acc.address}"/>
+                                    <sup>*</sup>
+                                    <span class="inline-infos">Street address, P.O. box, company name, c/o</span>
+                                </p>
+                                <p class="text">
+                                    <label for="address2">Address (Line 2)</label>
+                                    <h:inputText id="address2" value="#{accountBean.acc.address2}"/>
+                                    <span class="inline-infos">Apartment, suite, unit, building, floor, etc.</span>
+                                </p>
+                                <p class="required text">
+                                    <label for="city">City</label>
+                                    <h:inputText id="city" styleClass="required" value="#{accountBean.acc.city}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required id_state select text" style="display: block;">
+                                    <label for="id_state">State</label>
+                                    <h:inputText id="id_state" value="#{accountBean.acc.state}"/>
+                                </p>
+                                <p class="required postcode text">
+                                    <label for="postcode">Zip / Postal Code</label>
+                                    <h:inputText id="postcode" styleClass="required" value="#{accountBean.acc.zip}" onkeyup="$('#postcode').val($('#postcode').val().toUpperCase());" />
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required select text">
+                                    <label for="id_country">Country</label>
+                                    <h:inputText id="id_country" styleClass="required" value="#{accountBean.acc.country}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="textarea">
+                                    <label for="other">Additional information</label>
+                                    <h:inputTextarea id="other" style="max-width: 563px;width: 210px" rows="3" cols="26" value="#{accountBean.acc.additionalInformation}"/>
+                                </p>
+                                <p class="required">
+                                    You must register at least one phone number
+                                    <sup>*</sup>
+                                </p>
+                                <p class="text">
+                                    <label for="phone">Home phone</label>
+                                    <h:inputText id="phone" styleClass="required number" value="#{accountBean.acc.homePhone}"/>
+                                </p>
+                                <p class="text">
+                                    <label for="phone_mobile">Mobile phone</label>
+                                    <h:inputText id="phone_mobile" styleClass="number" value="#{accountBean.acc.tel}"/>
+                                </p>
+                                <p id="address_alias" class="required text">
+                                    <label for="alias">Assign an address alias for future reference</label>
+                                    <h:inputText id="alias" value="#{accountBean.acc.addressAlias}"/>
+                                    
+                                </p>
+                                <p class="required required_desc">
+                                    <sup>*</sup>
+                                    Required field
+                                </p>
+                                <p class="submit">
+                                    <h:commandButton id="submitAccount" styleClass="exclusive" value="Save" action="#{accountBean.updateacc}"/>
+                                </p>
+                            </fieldset>
+                        </h:form>
+
+                        <p id="security_informations"> [Insert customer data privacy clause or law here, if applicable] </p>
+                        <ul class="footer_links">
+                            <li>
+                                <a href="my-account.xhtml">
+                                    <img class="icon" alt="" src="../img/icon/my-account.png"/>
+                                </a>
+                                <a href="my-account.xhtml">Back to your account</a>
+                            </li>
+                            <li>
+                                <a href="index.xhtml">
+                                    <img class="icon" alt="" src="../img/icon/home.png"/>
+                                </a>
+                                <a href="index.xhtml">Home</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ui:insert>
+                        <ui:include src="../modules/cartAjax.xhtml" />
+                    </ui:insert>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

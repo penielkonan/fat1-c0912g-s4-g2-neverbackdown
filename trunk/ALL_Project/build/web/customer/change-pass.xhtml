@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <a href="my-account.xhtml">My account</a>
+                                <span class="navigation-pipe">></span>
+                                Changed password
+                            </div>
+                        </div>
+                        <h1>Changed</h1>
+                        <h3>Please be sure to update your password if it has changed.</h3>
+                        <h:form id="signupForm" styleClass="std identity">
+                            <fieldset>
+                                <p class="required text">
+                                    <label for="old_passwd">Current Password</label>
+                                    <h:inputSecret id="oldpass" styleClass="required" value="#{accountBean.oldpass}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required text">
+                                    <label for="passwd">New Password</label>
+                                    <h:inputSecret id="newpass" styleClass="valid required" value="#{accountBean.newpass}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required text">
+                                    <label for="confirmation">Confirmation</label>
+                                    <h:inputSecret id="confirmation" styleClass="valid required" value="#{accountBean.confirmation}"/>
+                                    <sup>*</sup>
+                                </p>
+                                <p class="required required_desc">
+                                    <sup>*</sup>
+                                    Required field
+                                </p>
+                                <p class="submit">
+                                    <h:commandButton id="submitAccount" styleClass="exclusive" value="Save" action="#{accountBean.changedPass}"/>
+                                </p>
+                            </fieldset>
+                        </h:form>
+                        <ul class="footer_links">
+                            <li>
+                                <a href="my-account.xhtml">
+                                    <img class="icon" alt="" src="../img/icon/my-account.png"/>
+                                </a>
+                                <a href="my-account.xhtml">Back to your account</a>
+                            </li>
+                            <li>
+                                <a href="index.xhtml">
+                                    <img class="icon" alt="" src="../img/icon/home.png"/>
+                                </a>
+                                <a href="index.xhtml">Home</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

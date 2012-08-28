@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>Edit WareHouse</span></h2>
+                        </div><!--contenttitle-->
+
+                        <br />
+
+                        <h:form id="form1" styleClass="stdform">                            
+                            <p>
+                                <label>Factory Name</label>
+                                <span class="field">
+                                    <h:selectOneMenu id="selection2" value="#{wareHouseBean.factoryChane}">
+                                        <f:selectItems value="#{factoryBean.listFactory}" var="lstF" itemLabel="#{lstF.factoryName}" itemValue="#{lstF.factoryID}" />
+                                    </h:selectOneMenu>
+                                </span>
+                            </p>
+                            <p>
+                                <label>WareHouse Name</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{wareHouseBean.w.wareHouseName}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Address</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{wareHouseBean.w.address}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Company</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{wareHouseBean.w.city}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Region</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{wareHouseBean.w.region}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Country</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{wareHouseBean.w.country}"/>
+                                </span>
+                            </p>
+                            <br />
+
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Update" action="#{wareHouseBean.updateWareHouse}"/>
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <body>
+        
+        <ui:composition template="./teamplate/Admin.xhtml">
+            
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>New Factory</span></h2>
+                        </div><!--contenttitle-->
+
+                        <br />
+
+                        <h:form id="form1" styleClass="stdform">
+                            <p>
+                                <label>Factory Name</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{factoryBean.fnew.factoryName}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Address</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{factoryBean.fnew.address}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>City</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{factoryBean.fnew.city}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Region</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{factoryBean.fnew.region}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Country</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{factoryBean.fnew.country}"/>
+                                </span>
+                            </p>
+                            <br />
+
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Update" action="#{factoryBean.addFactory}"/>
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+
+
+        </ui:composition>
+        
+    </body>
+</html>

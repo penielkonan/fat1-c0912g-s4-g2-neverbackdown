@@ -27,4 +27,9 @@ public class DepartmentsFacade extends AbstractFacade<Departments> {
         super(Departments.class);
     }
 
+    public String Department(String email){
+        String eql = "select a.departments.DepartmentID from Accounts a where a.email =:email";
+        return em.createQuery(eql).setParameter("email", email).getSingleResult().toString();
+    }
+
 }

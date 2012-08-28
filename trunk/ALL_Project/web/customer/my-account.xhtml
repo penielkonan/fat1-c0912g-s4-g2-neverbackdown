@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="../customer/index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <span class="navigation_page">My account</span>
+                            </div>
+                        </div>
+                        <h1>My account</h1>
+                        <h4>Welcome to your account. Here, you can manage your addresses and orders.</h4>
+                        <ul id="my_account_links">
+                            <li>
+                                <a title="Orders" href="history.xhtml">
+                                    <img class="icon" alt="Orders" src="../img/icon/order.png"/>
+                                </a>
+                                <a title="Orders" href="history.xhtml">History and details of my orders</a>
+                            </li>
+                            <li>
+                                <h:form>
+                                    <h:commandLink title="Information" action="#{accountBean.identity()}">                                    
+                                        <img class="icon" alt="Information" src="../img/icon/userinfo.png"/>                                        
+                                    </h:commandLink>
+                                    <h:commandLink title="Information" action="#{accountBean.identity()}" value="My personal information"/>
+                                </h:form>
+                            </li>
+                            <li>
+                                <a title="Changed Password" href="change-pass.xhtml">
+                                    <img class="icon" alt="Change" src="../img/icon/addrbook.png"/>
+                                </a>
+                                <a title="Changed Password" href="change-pass.xhtml">Changed Password</a>
+                            </li>
+                        </ul>
+                        <ul class="footer_links">
+                            <li>
+                                <h:form>
+                                    <a title="Home" href="index.xhtml">
+                                        <img class="icon" alt="Home" src="../img/icon/home.png"/>
+                                    </a>
+                                    <a title="Home" href="index.xhtml">Home</a>
+                                </h:form>
+                            </li>
+                        </ul>
+                    </div>
+                    <ui:insert>
+                        <ui:include src="../modules/cartAjax.xhtml" />
+                    </ui:insert>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

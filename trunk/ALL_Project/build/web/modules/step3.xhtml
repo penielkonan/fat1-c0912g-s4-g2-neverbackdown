@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                >
+
+    <div id="center_column" class="center_column">
+        <div class="breadcrumb bordercolor">
+            <div class="breadcrumb_inner">
+                <a title="return to Home" href="../customer/index.xhtml">Home</a>
+                <span class="navigation-pipe">></span>
+                <span class="navigation_page">Addresses</span>
+            </div>
+        </div>
+        <h1>Addresses</h1>
+        <ul id="order_steps" class="step3">
+            <li class="step_done">
+                <h:form>
+                    <h:commandLink action="#{orderStep.Order(0)}">Summary</h:commandLink>
+                </h:form>
+            </li>
+            <li class="step_done">
+                <h:form>
+                    <h:commandLink action="#{orderStep.Order(3)}">Login</h:commandLink>
+                </h:form>
+            </li>
+            <li class="step_current">
+                <span>Address</span>
+            </li>
+            <li class="step_todo">
+                <span>Shipping</span>
+            </li>
+            <li id="step_end" class="step_todo">
+                <span>Payment</span>
+            </li>
+        </ul>
+        <span> </span>
+        <h:form styleClass="std" id="addressStep">
+            <br/>
+            <br/>
+            <div>
+                <p class="required text">
+                    <label>Address for Order:</label>
+                    <h:inputText styleClass="text required" value="#{orderStep.addressOrder}"/>
+                    <sup>*</sup>
+                </p>
+                <p class="address_delivery select">
+                    <label for="id_address_delivery">Choose a region address:</label>
+                    <h:selectOneMenu id="id_address_delivery" styleClass="address_select" value="#{orderStep.regionOrder}">
+                        <f:selectItems value="#{orderStep.listRegion}" var="lstRegion" itemLabel="#{lstRegion.region}" itemValue="#{lstRegion.wareHouseID}" />
+                    </h:selectOneMenu>
+                </p>
+            </div>
+            <br/>
+            <br/>
+            <div class="clearfix"/>
+            <p class="cart_navigation submit">
+                <h:commandLink style="margin-left: -150px" styleClass="button" title="Previous" action="#{orderStep.Order(0)}">« Previous</h:commandLink>
+                <h:commandButton styleClass="exclusive" value="Next" action="#{orderStep.Order(4)}"/>
+            </p>
+        </h:form>
+    </div>
+</ui:composition>

@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Orders", catalog = "ALL_Project", schema = "dbo")
 @NamedQueries({
-    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o WHERE o.status = 1"),
+    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o"),
     @NamedQuery(name = "Orders.findByOrderID", query = "SELECT o FROM Orders o WHERE o.orderID = :orderID"),
     @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate"),
     @NamedQuery(name = "Orders.findByDeliveryAdress", query = "SELECT o FROM Orders o WHERE o.deliveryAdress = :deliveryAdress"),
@@ -208,7 +208,7 @@ public class Orders implements Serializable {
         if (b == true) {
             return "Successful transactions";
         } else {
-            return "Awaiting cheque payment";
+            return "Awaiting bank wire payment";
         }
     }
 

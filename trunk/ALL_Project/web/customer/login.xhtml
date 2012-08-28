@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="../customer/index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <span class="navigation_page">Login</span>
+                            </div>
+                        </div>
+                        <h1>Log in</h1>
+                        <ul id="order_steps" class="step2">
+                            <li class="step_done">
+                                <h:form>
+                                    <h:commandLink action="#{orderStep.Order(0)}">Summary</h:commandLink>
+                                </h:form>
+                            </li>
+                            <li class="step_current">
+                                <span>Login</span>
+                            </li>
+                            <li class="step_todo">
+                                <span>Address</span>
+                            </li>
+                            <li class="step_todo">
+                                <span>Shipping</span>
+                            </li>
+                            <li id="step_end" class="step_todo">
+                                <span>Payment</span>
+                            </li>
+                        </ul>
+                        <span> </span>
+                        <h:form id="create-account_form" styleClass="std">
+                            <fieldset>
+                                <h3>Create your account</h3>
+                                <h4>Enter your e-mail address to create an account.</h4>
+                                <p class="text2">
+                                    <label for="email_create">E-mail address</label>
+                                    <h:inputText id="email_create" styleClass="account_input required" value="#{orderStep.emailCreater}"/>
+                                    <script>
+                                        $(".account_input").attr("email", "email");
+                                    </script>
+                                </p>
+                                <p class="submit">
+                                    <h:commandButton id="SubmitCreate" styleClass="button_large" value="Create your account" action="#{orderStep.register}"/>
+                                </p>
+                            </fieldset>
+                        </h:form>
+                        <!--        Finish to Login-->
+                        <h:form id="login_form" styleClass="std">
+                            <fieldset>
+                                <h3>Already registered?</h3>
+                                <p class="text2">
+                                    <label for="email">E-mail address</label>
+                                    <h:inputText id="email" styleClass="account_input required" value="#{orderStep.emaillogin}"/>
+                                    <script>
+                                        $(".account_input").attr("email", "email");
+                                    </script>
+                                </p>
+                                <p class="text2">
+                                    <label for="passwd">Password</label>
+                                    <h:inputSecret id="passwd" styleClass="pass_input required" value="#{orderStep.passwordlogin}"/>
+                                    <script>
+                                        $(".pass_input").attr("minlength", "6");
+                                    </script>
+                                </p>
+                                <p class="submit">
+                                    <h:commandButton id="SubmitLogin" styleClass="button" value="Log in" action="#{orderStep.myAccount}"/>
+                                </p>
+                                <p class="lost_password">
+                                    <a href="#">Forgot your password?</a>
+                                </p>
+                            </fieldset>
+                        </h:form>
+                    </div>
+                    <ui:insert>
+                        <ui:include src="../modules/cartAjax.xhtml" />
+                    </ui:insert>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

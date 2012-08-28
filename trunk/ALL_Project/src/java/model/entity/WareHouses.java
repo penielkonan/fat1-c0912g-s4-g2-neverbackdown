@@ -57,8 +57,13 @@ public class WareHouses implements Serializable {
     @JoinColumn(name = "FactoryID", referencedColumnName = "FactoryID")
     @ManyToOne
     private Factorys factorys;
+    @JoinColumn(name = "AccountID", referencedColumnName = "AccountID")
+    @ManyToOne
+    private Accounts accounts;
     @OneToMany(mappedBy = "wareHouses")
     private Collection<Orders> ordersCollection;
+    @OneToMany(mappedBy = "wareHouses")
+    private Collection<ProductsInStock> productsInStockCollection;
 
     public WareHouses() {
     }
@@ -131,12 +136,28 @@ public class WareHouses implements Serializable {
         this.factorys = factorys;
     }
 
+    public Accounts getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Accounts accounts) {
+        this.accounts = accounts;
+    }
+
     public Collection<Orders> getOrdersCollection() {
         return ordersCollection;
     }
 
     public void setOrdersCollection(Collection<Orders> ordersCollection) {
         this.ordersCollection = ordersCollection;
+    }
+
+    public Collection<ProductsInStock> getProductsInStockCollection() {
+        return productsInStockCollection;
+    }
+
+    public void setProductsInStockCollection(Collection<ProductsInStock> productsInStockCollection) {
+        this.productsInStockCollection = productsInStockCollection;
     }
 
     @Override

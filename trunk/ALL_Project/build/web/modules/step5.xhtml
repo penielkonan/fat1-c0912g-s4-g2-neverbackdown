@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <div id="center_column" class="center_column">
+        <h:form>
+            <div class="breadcrumb bordercolor">
+                <div class="breadcrumb_inner">
+                    <a title="return to Home" href="../customer/index.xhtml">Home</a>
+                    <span class="navigation-pipe">></span>
+                    <span class="navigation_page">Your payment method</span>
+                </div>
+            </div>
+            <h1>Choose your payment method</h1>
+            <ul id="order_steps" class="step5">
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(1)}" value="Summary"/>
+                </li>
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(3)}" value="Login"/>
+                </li>
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(3)}" value="Address"/>
+                </li>
+                <li class="step_done">
+                <h:commandLink action="#{orderStep.Order(4)}" value="Shipping"/>
+                </li>
+                <li id="step_end" class="step_current">
+                    <span>Payment</span>
+                </li>
+            </ul>
+            <span> </span>
+            <h4>
+                Please select your preferred payment method to pay the amount of
+                <span class="price">$#{cartBean.priceOrder}</span>
+                (tax incl.)
+            </h4>
+            <div id="HOOK_PAYMENT">                
+                    <p class="payment_module">
+                    <h:commandLink title="Pay by cheque" action="#{orderStep.Order(6)}">                        
+                        <img width="86" height="49" alt="Pay by cheque" src="../img/cheque.jpg"/>
+                        Pay by cheque (order process will be longer)                        
+                    </h:commandLink>
+                    </p>
+                    <p class="payment_module">
+                    <h:commandLink title="Pay by cheque" action="#{orderStep.Order(8)}">                        
+                        <img width="86" height="49" alt="Pay by bank wire" src="../img/bankwire.jpg"/>
+                        Pay by bank wire (order process will be longer)                        
+                    </h:commandLink>
+                    </p>                
+            </div>
+            <p class="cart_navigation">               
+            <h:commandLink styleClass="button" title="Previous" action="#{orderStep.Order(4)}" value="« Previous"/>
+            </p>
+        </h:form>
+    </div>
+</ui:composition>

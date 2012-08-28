@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>Edit Product</span></h2>
+                        </div><!--contenttitle-->
+                        <br />
+                        <h:form id="form1" styleClass="stdform">
+                            <p>
+                                <label>Product Name</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.productName}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Product Detail</label>
+                                <span class="field">
+                                    <h:inputTextarea  styleClass="longinput" rows="5" cols="80" value="#{productBean.pd.productDetail}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>More Info</label>
+                                <span class="field">
+                                    <h:inputTextarea id="location" styleClass="longinput" rows="5" cols="80" value="#{productBean.pd.productMoreInfo}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Price</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.unitPrice}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Width</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.width}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Height</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.height}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Depth</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.depth}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Weight</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.weight}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Sizes</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{productBean.pd.sizes}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Category</label>
+                                <span class="field">
+                                    <h:selectOneMenu id="selection" value="#{productBean.cateChange}">
+                                        <f:selectItems value="#{categoryBean.listCategory}" var="lst" itemLabel="#{lst.productCategoryName}" itemValue="#{lst.productCategoryID}" />
+                                    </h:selectOneMenu>
+                                </span>
+                            </p>
+
+                            <br />
+
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Update" action="#{productBean.editProduct}"/>
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

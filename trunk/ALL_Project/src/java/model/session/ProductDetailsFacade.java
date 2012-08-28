@@ -58,6 +58,10 @@ public class ProductDetailsFacade extends AbstractFacade<ProductDetails> {
          return em.createQuery(eql).getResultList();
      }
 
+     public void addProductdetail(ProductDetails pdn){
+         em.persist(pdn);
+     }
+
      public void updateProductdetail(ProductDetails pd){
          em.merge(pd);
      }

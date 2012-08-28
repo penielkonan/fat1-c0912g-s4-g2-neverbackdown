@@ -18,7 +18,6 @@ import model.entity.AccountInformations;
 import model.entity.Accounts;
 import model.entity.Cart;
 import model.entity.Departments;
-import model.entity.Employees;
 import model.entity.OrderDetails;
 import model.entity.Orders;
 import model.entity.Payments;
@@ -26,7 +25,7 @@ import model.entity.ProductDetails;
 import model.entity.WareHouses;
 import model.session.AccountInformationsFacade;
 import model.session.AccountsFacade;
-import model.session.EmployeesFacade;
+import model.session.DepartmentsFacade;
 import model.session.OrderDetailsFacade;
 import model.session.OrdersFacade;
 import model.session.WareHousesFacade;
@@ -40,6 +39,8 @@ import model.session.WareHousesFacade;
 public class OrderStep implements Serializable {
 
     @EJB
+    private DepartmentsFacade departmentsFacade;
+    @EJB
     private OrderDetailsFacade orderDetailsFacade;
     @EJB
     private OrdersFacade ordersFacade;
@@ -48,8 +49,6 @@ public class OrderStep implements Serializable {
     @EJB
     private AccountInformationsFacade accountInformationsFacade;
     @EJB
-    private EmployeesFacade employeesFacade;
-    @EJB
     private AccountsFacade accountsFacade;
 
     /** Creates a new instance of OrderStep */
@@ -57,12 +56,13 @@ public class OrderStep implements Serializable {
     }
     private int step;
     private String emailCreater;
-    private String fname, lname, password, company, address, address2, city, state, zip, country, addinfo, homephone, mobiphone, addalias, title;
+    private String fname, lname, password, company, address, address2, city, state, zip, country, addinfo, homephone, mobiphone, addalias;
     private String emaillogin, passwordlogin, addressOrder;
     private int regionOrder;
 //    private String birthday;
     private String hello;
     private Date birthday;
+    private String title = "Mr.";
 
     public Date getBirthday() {
         return birthday;
@@ -71,7 +71,6 @@ public class OrderStep implements Serializable {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
-
 
     public String getHello() {
         return hello;
@@ -120,7 +119,6 @@ public class OrderStep implements Serializable {
 //    public void setBirthday(String birthday) {
 //        this.birthday = birthday;
 //    }
-
     public String getAddalias() {
         return addalias;
     }
@@ -261,10 +259,6 @@ public class OrderStep implements Serializable {
         return step;
     }
 
-    public String getDeparment(String email) {
-        return employeesFacade.Department(email).toString();
-    }
-
     ///////////////////////////////
     public String Finish(int id, int payment) {
         this.step = id;
@@ -312,7 +306,8 @@ public class OrderStep implements Serializable {
     public String checkLoginStep() {
         boolean fag = accountsFacade.checkAccount(emaillogin, passwordlogin);
         if (fag == true) {
-            if (getDeparment(emaillogin).equals("3")) {
+            accounts = accountsFacade.getAccountByEmail(emaillogin);
+            if (accounts.getDepartments().getDepartmentID() == 3) {
                 this.step = 3;
                 login = true;
                 return "order";
@@ -322,11 +317,11 @@ public class OrderStep implements Serializable {
     }
 
     public String getRegionbyID() {
-        return wareHousesFacade.RegionByID(regionOrder);
+        return wareHousesFacade.getWareHousesByID(regionOrder).getRegion();
     }
 
     public List<WareHouses> getListRegion() {
-        return wareHousesFacade.findAll();
+        return wareHousesFacade.getListWareHousr();
     }
 
     public List<AccountInformations> getAccInfoByEmail() {
@@ -356,6 +351,7 @@ public class OrderStep implements Serializable {
         a.setEmail(emailCreater);
         a.setPassword(password);
         a.setStatus(true);
+        a.setDepartments(new Departments(3));
         accountsFacade.creatAccount(a);
         AccountInformations aInfo = new AccountInformations();
         aInfo.setAccounts(new Accounts(accountsFacade.getIdAccountByEmail(emailCreater)));
@@ -375,13 +371,9 @@ public class OrderStep implements Serializable {
         aInfo.setTel(mobiphone);
         aInfo.setAddressAlias(address);
         accountInformationsFacade.AddInformations(aInfo);
-        Employees e = new Employees();
-        e.setDepartments(new Departments(3));
-        e.setAccounts(new Accounts(accountsFacade.getIdAccountByEmail(emailCreater)));
-        employeesFacade.CreateEmployee(e);
         boolean fag = accountsFacade.checkAccount(emailCreater, password);
         if (fag == true) {
-            if (getDeparment(emailCreater).equals("3")) {
+            if (a.getDepartments().getDepartmentID() == 3) {
                 this.step = 3;
                 login = true;
                 return "order";
@@ -390,27 +382,38 @@ public class OrderStep implements Serializable {
         this.step = 2;
         return "order";
     }
+    Accounts accounts = new Accounts();
+
+    public Accounts getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Accounts accounts) {
+        this.accounts = accounts;
+    }
 
     public String myAccount() {
         boolean fag = accountsFacade.checkAccount(emaillogin, passwordlogin);
         if (fag == true) {
-            if (getDeparment(emaillogin).equals("3")) {
+            accounts = accountsFacade.getAccountByEmail(emaillogin);
+            if (accounts.getStatus() == false) {
+                return "login";
+            } else if (accounts.getDepartments().getDepartmentID() == 3) {
                 this.step = 3;
                 login = true;
                 return "my-account";
+            } else {
+                return "login";
             }
+        } else {
+            return "login";
         }
-        return "login";
     }
 
-    public String register(){
+    public String register() {
         return "register";
     }
 
-//    public void addmycart() {
-//        CartBean c = (CartBean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cartBean");
-//
-//    }
     public String logOut() {
         login = false;
         FacesContext facesContext = FacesContext.getCurrentInstance();

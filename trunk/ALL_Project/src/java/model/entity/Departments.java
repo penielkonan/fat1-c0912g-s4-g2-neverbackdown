@@ -10,6 +10,8 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -30,6 +32,7 @@ import javax.persistence.Table;
 public class Departments implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "DepartmentID", nullable = false)
     private Integer departmentID;
@@ -39,7 +42,7 @@ public class Departments implements Serializable {
     @Column(name = "Description", length = 2147483647)
     private String description;
     @OneToMany(mappedBy = "departments")
-    private Collection<Employees> employeesCollection;
+    private Collection<Accounts> accountsCollection;
 
     public Departments() {
     }
@@ -72,12 +75,12 @@ public class Departments implements Serializable {
         this.description = description;
     }
 
-    public Collection<Employees> getEmployeesCollection() {
-        return employeesCollection;
+    public Collection<Accounts> getAccountsCollection() {
+        return accountsCollection;
     }
 
-    public void setEmployeesCollection(Collection<Employees> employeesCollection) {
-        this.employeesCollection = employeesCollection;
+    public void setAccountsCollection(Collection<Accounts> accountsCollection) {
+        this.accountsCollection = accountsCollection;
     }
 
     @Override

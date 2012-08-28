@@ -49,11 +49,12 @@ public class OrdersFacade extends AbstractFacade<Orders> {
     public List<Orders> getList(){
         return em.createNamedQuery("Orders.findAll").getResultList();
     }
-
+    
     public List<Orders> getListDealer(int id){
         String eql = "SELECT o FROM Orders o WHERE o.wareHouses.wareHouseID = :id";
         return em.createQuery(eql).setParameter("id", id).getResultList();
-    }   
+    }
+    
 
     public Accounts findIdByEmail(String email){
         String eql = "SELECT a.accountID FROM Accounts a WHERE a.email = :email";

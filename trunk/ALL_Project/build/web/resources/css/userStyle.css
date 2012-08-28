@@ -297,9 +297,21 @@ input[type="text"], input[type="password"], textarea, select {
     text-decoration: none;
 }
 
+li a.logoutH{
+    color: #666464;
+}
+
+li a.logoutH:hover {
+    color: #E70B0B;
+}
+
 #header_user #header_user_info a {
     color: #666464;
     text-transform: lowercase;
+}
+
+form span {
+    color: #E70B0B;
 }
 
 #header_user li {
@@ -651,7 +663,7 @@ table#cart_summary td.price, #center_column span.price {
     display: block;
     font: 15px "Arial";
     padding: 16px 0 0 25px;
-    
+
 }
 
 #featured_products ul li .feat_add2cart {
@@ -969,7 +981,7 @@ input[type="text"], input[type="password"], textarea, select {
     font: 12px "Arial";
 }
 
-.buy_block #quantity_wanted_p #quantity_wanted , .text {
+.buy_block #quantity_wanted_p #quantity_wanted , .textb {
     float: right;
     height: 15px;
     margin: 6px 0 0;
@@ -978,10 +990,6 @@ input[type="text"], input[type="password"], textarea, select {
     width: 20px;
 }
 
-label {
-    color: #777777;
-    font: 12px "Arial";
-}
 
 .buy_block #quantity_wanted_p label {
     float: right;
@@ -1220,11 +1228,6 @@ div#more_info_sheets {
     width: 11px;
 }
 
-label {
-    color: #777777;
-    font: 12px "Arial";
-}
-
 #idTab3 fieldset label {
     display: block;
     padding: 0 0 3px;
@@ -1444,11 +1447,6 @@ div.column a {
     text-transform: none;
 }
 
-.center_column p {
-    color: #999999;
-    margin: 0 0 -3px;
-    padding: 17px 0 0;
-}
 
 .center_column .cat_desc {
     border-style: solid;
@@ -1501,6 +1499,11 @@ div.column a {
     cursor: default;
 }
 
+.product_sort ul li#product_view_list.current {
+    background-position: 0 -72px;
+    cursor: default;
+}
+
 .product_sort ul li + li {
     margin: 0 0 0 10px;
 }
@@ -1515,6 +1518,7 @@ div.column a {
     margin: 20px 0 0;
     padding: 0 20px;
 }
+
 
 .list li {
     height: 200px;
@@ -1561,6 +1565,50 @@ div.column a {
     color: #FFFFFF;
 }
 
+.grid {
+    overflow: hidden;
+    padding: 10px 0 0;
+}
+
+.grid li {
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    margin: 10px 10px 0 0;
+    padding: 20px;
+    width: 202px;
+}
+
+.grid li h3 {
+    height: 32px;
+}
+
+.grid li h3 a {
+    font-size: 14px;
+}
+
+
+.grid li a.product_img_link {
+    display: block;
+    text-align: center;
+}
+
+.grid li span.price {
+    display: block;
+    font: 15px "Arial" !important;
+    padding: 17px 0 0;
+}
+
+.grid li .compare {
+    padding: 14px 0 0;
+}
+
+.grid li .exclusive {
+    margin: 20px 0 0;
+}
+
+
+
 .center_column h2, .center_column h3, .center_column h4 {
     color: #E70B0B;
     font-size: 12px;
@@ -1581,14 +1629,12 @@ a.product_link {
     text-transform: uppercase;
 }
 
-.list li .center_block h3 a {
-    font-size: 14px;
+a.product_descr:hover{
+    color: #e70b0b;
 }
 
-.center_column p {
-    color: #999999;
-    margin: 0 0 -3px;
-    padding: 17px 0 0;
+.list li .center_block h3 a {
+    font-size: 14px;
 }
 
 a.product_descr {
@@ -1630,12 +1676,6 @@ table#cart_summary td.price, #center_column span.price {
     color: #FFFFFF;
     font-weight: bold;
     text-align: left;
-}
-
-.center_column p {
-    color: #999999;
-    margin: 0 0 -3px;
-    padding: 17px 0 0;
 }
 
 .list li .right_block .compare {
@@ -1706,12 +1746,6 @@ ul.step1 {
     float: left;
     height: 56px;
     width: 110px;
-}
-
-.center_column p {
-    color: #999999;
-    margin: 0 0 -3px;
-    padding: 17px 0 0;
 }
 
 div.table_block {
@@ -1830,9 +1864,575 @@ p.cart_navigation .button, p.cart_navigation .button_large {
 
 p.warning {
     background: none repeat scroll 0 0 #F8E1A0;
-    color: #000000;
+    color: #000000 !important;
     font: bold 12px "Arial";
+    margin: 20px 0 0 !important;
+    padding: 10px 13px !important;
+}
+
+
+#order_steps li a {
+    color: #333333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#order_steps li.step_current span {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+ul.step2 {
+    background-position: 0 -56px;
+}
+
+#order_steps li a:hover{
+    color: #e70b0b;
+}
+
+#create-account_form {
+    border: 1px solid #555555;
+    clear: none;
+    float: left;
+    margin: 10px 3% 0 0;
+    padding: 5px 20px 53px;
+    width: 44%;
+}
+
+.center_column h2, .center_column h3, .center_column h4 {
+    color: #E70B0B;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 0 -3px;
+    padding: 17px 0 0;
+    text-transform: uppercase;
+}
+
+form.std h3 {
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0;
+    padding: 17px 5px 7px 0;
+}
+
+#create-account_form h4 {
+    color: #555555;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: none;
+}
+
+#create-account_form h4, #login_form h4 {
+    height: 45px;
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+form.std .text2, form.std .password {
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+#create-account_form p.text2,#login_form p.text2 {
+    padding: 15px 0 0;
+    width: 220px;
+}
+
+form.std .text2 label, form.std .password label, form.std .textarea label, form.std .select label, form.std .select span, form.std .radio span, form.std .checkbox span {
+    color: #777777;
+    float: left;
+    font: 12px "Arial";
+    padding: 4px 7px 0 0;
+    text-align: right;
+    width: 150px;
+}
+
+#create-account_form label, #login_form label {
+    clear: both;
+    display: block;
+    padding: 0 0 5px;
+    text-align: left;
+}
+
+#login_form label.error,#create-account_form label.error{
+    color: red;
+    width: 270px;
+}
+
+
+form.std input[type="text"], form.std input[type="password"], form.std textarea {
+    -moz-transition: border-color 0.6s ease 0s;
+    background: none repeat scroll 0 0 #F1F1F1;
+    border: 1px solid #F1F1F1;
+    padding: 3px;
+}
+
+form.std .text2 input, form.std .password input {
+    height: 15px;
+    width: 212px;
+}
+
+form.std p.submit {
+    margin: 0;
+    padding: 20px 0 0 157px;
+}
+
+#create-account_form p.submit, #login_form p.submit {
+    padding: 18px 0 0;
+}
+
+#login_form p.lost_password {
+    margin: 0;
+}
+
+#login_form {
+    border: 1px solid #555555;
+    clear: none;
+    float: left;
+    margin-top: 10px;
+    padding: 5px 20px 23px;
+    width: 40.9%;
+}
+
+.center_column a:hover {
+    text-decoration: none;
+}
+
+/*=====================================================*/
+/*====================Create Account===================*/
+/*=====================================================*/
+
+
+form.std p.checkbox, form.std p.radio {
+    margin: 0;
+    overflow: hidden;
+    padding: 15px 0 0;
+}
+
+.checkbox input, .radio input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    display: inline;
+    left: 0;
+    position: relative;
+    top: 1px;
+}
+
+form#account-creation_form p.radio input {
+    top: 5px;
+}
+
+.checkbox label, .radio label {
+    padding: 0 0 0 3px;
+    width: auto;
+}
+
+form#account-creation_form p.radio label {
+    display: inline-block;
+    padding: 4px 25px 0 20px;
+}
+
+form.std .text, form.std .password {
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+form.std .required {
+    margin: 0;
+}
+
+form.std .text label, form.std .password label, form.std .textarea label, form.std .select label, form.std .select span, form.std .radio span, form.std .checkbox span {
+    color: #777777;
+    float: left;
+    font: 12px "Arial";
+    padding: 4px 7px 0 0;
+    text-align: right;
+    width: 150px;
+}
+
+#account-creation_form label.error {
+    color: red;
+    width: 250px;
+    float: right;
+}
+
+#addressStep label.error{
+    color: red;
+    width: 250px;
+    float: right;
+}
+
+
+form.std .required sup {
+    color: #DA0F00;
+    font: 13px "Tahoma";
+    vertical-align: top;
+}
+
+form.std .select {
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+form.std select {
+    -moz-transition: border-color 0.6s ease 0s;
+    background: none repeat scroll 0 0 #F1F1F1;
+    border: 1px solid #F1F1F1;
+    padding: 3px;
+}
+
+form.std .select select {
+    height: 23px;
+    padding: 2px;
+    width: 220px;
+}
+
+select#days {
+    margin: 0 8px 0 0;
+    width: 50px;
+}
+
+select#months {
+    margin: 0 8px 0 0;
+    width: 90px;
+}
+
+form.std span.inline-infos {
+    color: #777777;
+    display: block;
+    font: 11px "Arial";
+    margin: 0 0 -3px;
+    padding: 2px 0 0 157px;
+}
+
+form.std .select select {
+    height: 23px;
+    padding: 2px;
+    width: 220px;
+}
+
+form.std .textarea {
+    margin: 0;
+    padding: 15px 0 0;
+}
+
+textarea {
+    max-width: 755px;
+    min-width: 755px;
+    overflow: auto !important;
+    padding: 3px;
+    width: 755px;
+}
+
+form.std input[type="text"], form.std input[type="password"], form.std textarea {
+    -moz-transition: border-color 0.6s ease 0s;
+    background: none repeat scroll 0 0 #F1F1F1;
+    border: 1px solid #F1F1F1;
+    padding: 3px;
+}
+
+form.std .textarea textarea {
+    min-width: 212px;
+}
+
+form#account-creation_form textarea {
+    max-width: 563px;
+    width: 210px;
+}
+
+form.std .required_desc {
+    margin: 0 0 -3px;
+    padding-left: 157px;
+}
+
+form.std {
+    clear: both;
+}
+
+tr td input{
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    display: inline;
+    left: 0;
+    position: relative;
+    top: 1px;
+}
+
+tr td input{
+    left: 120px;
+    margin-left: 40px;
+    top: -15px;
+}
+
+form.std .text input, form.std .password input {
+    height: 15px;
+    width: 212px;
+}
+
+/*=====================================================*/
+/*========================Addresses====================*/
+/*=====================================================*/
+
+.center_column p {
+    color: #999999;
+    margin: 0 0 -3px;
+    padding: 17px 0 0;
+}
+
+div.order_address p.select label {
+    float: left;
+    padding: 2px 7px 0 0;
+    text-align: right;
+}
+
+.checkbox input, .radio input {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    display: inline;
+    left: 0;
+    position: relative;
+    top: 1px;
+}
+
+.checkbox label, .radio label {
+    padding: 0 0 0 3px;
+    width: auto;
+}
+
+.checkbox label.error{
+    color: red;
+    width: 250px;
+    float: right ;
+}
+
+ul.item {
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    margin: 20px 4% 0 0;
+    overflow: hidden;
+    padding: 0 0 17px;
+    width: 47.6%;
+}
+
+ul.alternate_item {
+    border-style: solid;
+    border-width: 1px;
+    float: right;
     margin: 20px 0 0;
-    padding: 10px 13px;
+    overflow: hidden;
+    padding: 0 0 17px;
+    width: 47.6%;
+}
+
+ul.address li.address_title {
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 17px 20px 14px;
+    text-transform: uppercase;
+}
+
+ul.address li {
+    margin: 5px 20px 0;
+}
+
+ul.address li span.address_name, ul.address li span.address_firstname, ul.address li span.address_lastname, ul.address li.address_firstname {
+    color: #E70B0B;
+    font-weight: bold;
+}
+
+div.order_address p.address_add {
+    margin: 0;
+    padding: 20px 0 0;
+}
+
+br.clear {
+    clear: both;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+ul.step3 {
+    background-position: 0 -112px;
+}
+
+/*=====================================================*/
+/*========================Shipping====================*/
+/*=====================================================*/
+
+ul.step4 {
+    background-position: 0 -168px;
+}
+
+table#carrierTable {
+    margin: 17px 0 0;
+}
+
+/*=====================================================*/
+/*========================Payment====================*/
+/*=====================================================*/
+
+p.payment_module {
+    border: medium none !important;
+    display: block;
+    margin: 0 !important;
+    padding: 20px 0 0 !important;
+}
+
+.payment_module a {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border: 1px solid #DDDDDD;
+    color: #777777;
+    display: block;
+    padding: 7px;
+    text-decoration: none;
+}
+
+.payment_module img {
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+}
+
+ul.step5 {
+    background-position: 0 -224px;
+}
+
+.payment_module a:hover, .payment_module a:focus, .payment_module a:active {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E70B0B;
+    color: #000000;
+}
+
+ul.footer_links {
+    clear: both;
+    height: 16px;
+    padding: 20px 0 0;
+}
+
+ul.footer_links li {
+    float: left;
+    height: 16px;
+    margin: 0 25px 0 0;
+}
+
+ul.footer_links li a {
+    line-height: 17px;
+    text-decoration: none;
+}
+
+ul.footer_links li img.icon {
+    margin: 0 5px 0 0;
+}
+
+/*=====================================================*/
+/*=========================CMS=========================*/
+/*=====================================================*/
+
+body#cms div.content_only {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #000000;
+    padding: 0 20px 20px;
+    text-align: left;
+}
+
+body#cms div.content_only h2 {
+    color: #777777;
+    font: bold 14px "Arial";
+    padding: 14px 0 0;
+    text-transform: uppercase;
+}
+
+body#cms div.content_only p {
+    color: #000000;
+    font: 12px "Arial";
+    padding-top: 12px;
+}
+
+/*=====================================================*/
+/*======================My-Account=====================*/
+/*=====================================================*/
+
+div#center_column ul#my_account_links {
+    padding: 3px 0 0;
+}
+
+div#center_column ul#my_account_links li {
+    padding: 12px 0 0;
+}
+
+div#center_column ul#my_account_links li img {
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+ul.footer_links {
+    clear: both;
+    height: 16px;
+    padding: 20px 0 0;
+}
+
+ul.footer_links li {
+    float: left;
+    height: 16px;
+    margin: 0 25px 0 0;
+}
+
+ul.footer_links li a {
+    line-height: 17px;
+    text-decoration: none;
+}
+
+ul.footer_links li img.icon {
+    margin: 0 5px 0 0;
+}
+
+div#block-history {
+    margin: 17px 0 0;
+}
+
+table.std {
+    width: 100%;
+}
+
+.color-myaccount, a.color-myaccount {
+    color: #E70B0B;
+}
+
+table#order-list td.history_link a {
+    font-weight: bold;
+}
+
+p#security_informations {
+    font-size: 11px;
+    padding: 20px 0 0 157px;
+}
+
+/*=====================================================*/
+/*======================Order detail=====================*/
+/*=====================================================*/
+
+#block-history #block-order-detail {
+    padding: 3px 0 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+div.table_block {
+    padding: 20px 0 0;
+}
+
+table.std {
+    width: 100%;
+}
+
+form.identity label.error{
+    float:right;
+    color:red;
+    width: 280px;
 }
 

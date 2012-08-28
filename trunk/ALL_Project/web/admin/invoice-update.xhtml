@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./teamplate/Admin.xhtml">
+
+            <ui:define name="maincontent">
+                <div class="maincontent noright">
+                    <div class="maincontentinner">
+                        <div class="contenttitle">
+                            <h2 class="form"><span>Edit Invoice</span></h2>
+                        </div><!--contenttitle-->
+
+                        <br />
+
+                        <h:form id="form1" styleClass="stdform">
+                            <p>
+                                <label>Address</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{invoicesBean.o.deliveryAdress}"/>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Order Date</label>
+                                <span class="field">
+                                    <h:inputText styleClass="longinput" value="#{invoicesBean.o.orderDate}">
+                                        <f:convertDateTime pattern="yyyy/MM/dd HH:mm"/>
+                                    </h:inputText>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Region</label>
+                                <span class="field">
+                                    <h:selectOneMenu id="selection2" value="#{invoicesBean.warehouseChange}">
+                                        <f:selectItems value="#{orderStep.listRegion}" var="lstRegion" itemLabel="#{lstRegion.region}" itemValue="#{lstRegion.wareHouseID}" />
+                                    </h:selectOneMenu>
+                                </span>
+                            </p>
+                            <p>
+                                <label>Status</label>
+                                <span class="field">
+                                    <h:selectOneMenu id="selection" value="#{invoicesBean.o.isPay}">
+                                        <f:selectItem itemLabel="Awaiting cheque payment" itemValue="false" />
+                                        <f:selectItem itemLabel="Successful transactions" itemValue="true" />
+                                    </h:selectOneMenu>
+                                </span>
+                            </p>
+
+                            <br />
+
+                            <p class="stdformbutton">
+                                <h:commandButton styleClass="submit radius2" value="Update" action="#{invoicesBean.updateInvoice}"/>
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

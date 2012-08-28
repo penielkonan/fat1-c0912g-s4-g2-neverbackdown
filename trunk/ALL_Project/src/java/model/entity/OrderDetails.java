@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model.entity;
 
 import java.io.Serializable;
@@ -33,6 +32,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "OrderDetails.findByTotalMoney", query = "SELECT o FROM OrderDetails o WHERE o.totalMoney = :totalMoney"),
     @NamedQuery(name = "OrderDetails.findByStatus", query = "SELECT o FROM OrderDetails o WHERE o.status = :status")})
 public class OrderDetails implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -142,12 +142,11 @@ public class OrderDetails implements Serializable {
         return "model.entity.OrderDetails[orderDetailID=" + orderDetailID + "]";
     }
 
-    public double totalPrice(){
+    public double totalPrice() {
         return totalMoney.doubleValue();
     }
 
-    public double priceByOrdetail(){
+    public double priceByOrdetail() {
         return price.doubleValue();
     }
-
 }

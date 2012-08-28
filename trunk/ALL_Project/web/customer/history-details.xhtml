@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/Template.xhtml">
+
+            <ui:define name="content">
+                <div id="columns">
+                    <div id="center_column" class="center_column">
+                        <div class="breadcrumb bordercolor">
+                            <div class="breadcrumb_inner">
+                                <a title="return to Home" href="index.xhtml">Home</a>
+                                <span class="navigation-pipe">></span>
+                                <a href="my-account.xhtml">My account</a>
+                                <span class="navigation-pipe">></span>
+                                <a href="history.xhtml">History</a>
+                                <span class="navigation-pipe">></span>
+                                Order details
+                            </div>
+                        </div>
+                        <h1>Order details</h1>
+                        <p>Here are the orders you have placed since the creation of your account.</p>
+                        <div id="block-history" class="block-center">
+                            <div id="block-order-detail" class="hidden" style="display: block;">
+                                <h:form>
+                                    <ui:repeat value="#{invoicesBean.ordershow}" var="lstoshow">
+                                        <h4>
+                                            Order placed on
+                                            <h:outputText id="date" value="#{lstoshow.orderDate}">
+                                                <f:convertDateTime pattern="yyyy/dd/MM" />
+                                            </h:outputText>
+                                        </h4>
+                                        <p class="bold">Follow your order step-by-step</p>
+                                        <div class="table_block">
+                                            <table class="detail_step_by_step std">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="first_item">Date</th>
+                                                        <th class="last_item">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="first_item item">
+                                                        <td>
+                                                            <h:outputText value="#{lstoshow.orderDate}">
+                                                                <f:convertDateTime pattern="yyyy/dd/MM HH:mm" />
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td>#{lstoshow.orderStatus(lstoshow.isPay)}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p class="bold">
+                                            Order:
+                                            <span class="color-myaccount">##{lstoshow.orderID}</span>
+                                        </p>
+                                        <p class="bold">Carrier: My carrier</p>
+                                        <p class="bold">
+                                            Payment method:
+                                            <span class="color-myaccount">#{lstoshow.paymentName(lstoshow.payments.paymentID)}</span>
+                                        </p>
+                                        <p class="bold">
+                                            Address :
+                                            <span class="color-myaccount">#{lstoshow.deliveryAdress}</span>
+                                        </p>
+                                    </ui:repeat>
+                                </h:form>
+                                <div class="clearblock"></div>
+                                <form>
+                                    <div id="order-detail-content" class="table_block">
+                                        <table class="std">
+                                            <thead>
+                                                <tr>
+                                                    <th class="first_item">Reference</th>
+                                                    <th class="item">Product</th>
+                                                    <th class="item">Quantity</th>
+                                                    <th class="item">Unit price</th>
+                                                    <th class="last_item">Total price</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr class="item">
+                                                    <td colspan="5">
+                                                        Total products (tax excl.):
+                                                        <span class="price">$#{invoicesBean.TotalMoneyByOrderID()}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="item">
+                                                    <td colspan="5">
+                                                        Total products (tax incl.):
+                                                        <span class="price">$#{invoicesBean.TotalMoneyByOrderID()}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="item">
+                                                    <td colspan="5">
+                                                        Total shipping (tax incl.):
+                                                        <span class="price price-shipping">$0,0</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="item">
+                                                    <td colspan="5">
+                                                        Total:
+                                                        <span class="price">$#{invoicesBean.TotalMoneyByOrderID()}</span>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <ui:repeat value="#{invoicesBean.listOrderDetail}" var="lst">
+                                                    <tr class="item">
+                                                        <td>
+                                                            <label for="cb_9">—</label>
+                                                        </td>
+                                                        <td class="bold">                                                            
+                                                            <label for="cb_9"> #{lst.productDetails.productName} </label>
+                                                        </td>
+                                                        <td>
+                                                            <label for="cb_9">
+                                                                <span class="order_qte_span editable">#{lst.amount}</span>
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                            <label for="cb_9">
+                                                                <span class="price">$#{lst.priceByOrdetail()}</span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="last_item">
+                                                            <label for="cb_9">
+                                                                <span class="price">$#{lst.totalPrice()}</span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <ul class="footer_links">
+                            <li>
+                                <a href="my-account.xhtml">
+                                    <img class="icon" alt="" src="../img/icon/my-account.png"/>
+                                </a>
+                                <a href="my-account.xhtml">Back to your account</a>
+                            </li>
+                            <li>
+                                <a href="index.xhtml">
+                                    <img class="icon" alt="" src="../img/icon/home.png"/>
+                                </a>
+                                <a href="index.xhtml">Home</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

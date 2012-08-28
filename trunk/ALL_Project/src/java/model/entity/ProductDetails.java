@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ProductDetails", catalog = "ALL_Project", schema = "dbo")
 @NamedQueries({
-    @NamedQuery(name = "ProductDetails.findAll", query = "SELECT p FROM ProductDetails p WHERE p.status = 1"),
+    @NamedQuery(name = "ProductDetails.findAll", query = "SELECT p FROM ProductDetails p"),
     @NamedQuery(name = "ProductDetails.findByProductID", query = "SELECT p FROM ProductDetails p WHERE p.productID = :productID"),
     @NamedQuery(name = "ProductDetails.findByProductName", query = "SELECT p FROM ProductDetails p WHERE p.productName = :productName"),
     @NamedQuery(name = "ProductDetails.findByUnitPrice", query = "SELECT p FROM ProductDetails p WHERE p.unitPrice = :unitPrice"),
@@ -73,6 +73,12 @@ public class ProductDetails implements Serializable {
     private Boolean status;
     @OneToMany(mappedBy = "productDetails")
     private Collection<OrderDetails> orderDetailsCollection;
+    @OneToMany(mappedBy = "productDetails")
+    private Collection<ProductsInStock> productsInStockCollection;
+    @OneToMany(mappedBy = "productDetails")
+    private Collection<Productions> productionsCollection;
+    @OneToMany(mappedBy = "productDetails")
+    private Collection<ProductComments> productCommentsCollection;
     @JoinColumn(name = "ProductCategoryID", referencedColumnName = "ProductCategoryID")
     @ManyToOne
     private ProductCategorys productCategorys;
@@ -188,6 +194,30 @@ public class ProductDetails implements Serializable {
         this.orderDetailsCollection = orderDetailsCollection;
     }
 
+    public Collection<ProductsInStock> getProductsInStockCollection() {
+        return productsInStockCollection;
+    }
+
+    public void setProductsInStockCollection(Collection<ProductsInStock> productsInStockCollection) {
+        this.productsInStockCollection = productsInStockCollection;
+    }
+
+    public Collection<Productions> getProductionsCollection() {
+        return productionsCollection;
+    }
+
+    public void setProductionsCollection(Collection<Productions> productionsCollection) {
+        this.productionsCollection = productionsCollection;
+    }
+
+    public Collection<ProductComments> getProductCommentsCollection() {
+        return productCommentsCollection;
+    }
+
+    public void setProductCommentsCollection(Collection<ProductComments> productCommentsCollection) {
+        this.productCommentsCollection = productCommentsCollection;
+    }
+
     public ProductCategorys getProductCategorys() {
         return productCategorys;
     }
@@ -222,8 +252,14 @@ public class ProductDetails implements Serializable {
     }
 
     public String toDetailsCut() {
-        String productDetailCut = "" + productDetail;
-        return productDetail.substring(0, 200) + "...";
+        if (productDetail.length() == 0){
+            return "";
+        }
+        else if(productDetail.length() < 200) {
+            return productDetail;
+        } else {
+            return productDetail.substring(0, 200) + "...";
+        }
     }
 
     public double amount() {
